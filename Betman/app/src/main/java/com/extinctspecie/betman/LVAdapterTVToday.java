@@ -79,8 +79,8 @@ public class LVAdapterTVToday extends BaseAdapter
             viewHolder.tvTime = (TextView) view.findViewById(R.id.tvTime);
             viewHolder.tvTime.setTypeface(Fonts.getSFDiegoSans());
 
-            tvTemp = (TextView) view.findViewById(R.id.tvOddSymbol);
-            tvTemp.setTypeface(Fonts.getSFDiegoSans());
+            //tvTemp = (TextView) view.findViewById(R.id.tvOddSymbol);
+            //tvTemp.setTypeface(Fonts.getSFDiegoSans());
 
             view.setTag(viewHolder);
         }
@@ -99,7 +99,7 @@ public class LVAdapterTVToday extends BaseAdapter
 
         viewHolder.tvOdd.setText(item.getOdd());
 
-        viewHolder.tvTime.setText(item.getTime_of_the_game());
+        viewHolder.tvTime.setText(item.getTime_of_the_game().substring(11,16));
 
         return view;
     }
