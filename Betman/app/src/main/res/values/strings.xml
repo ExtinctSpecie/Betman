@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Betman</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="tv_today_title">Today</string>
+    <string name="tv_vip_title">Vip</string>
+    <string name="tv_marked_title">Marked</string>
+    <string name="tv_history_title">History</string>
+
+</resources>
