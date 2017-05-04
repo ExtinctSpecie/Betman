@@ -1,6 +1,9 @@
 package com.extinctspecie.betman;
 
+import android.content.DialogInterface;
+import android.graphics.Color;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
 import android.support.v4.view.ViewPager;
@@ -66,7 +69,35 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-//
+    @Override
+    public void onBackPressed() {
+        if(!(viewPager.getCurrentItem() == 0)){
+            viewPager.setCurrentItem(0);
+        }
+        else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage("Do you want to exit the app?")
+                    .setCancelable(false)
+                    .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                        }
+                    })
+                    .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+            AlertDialog alert = builder.create();
+
+
+            alert.show();
+            alert.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(Color.BLACK);
+            alert.getButton(DialogInterface.BUTTON_POSITIVE).setTextColor(Color.RED);
+        }
+    }
+
+    //
 //
 //
 //    private void setupToolbar()
