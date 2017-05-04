@@ -1,23 +1,18 @@
 package com.extinctspecie.betman.fragments;
 
-import android.app.Application;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v4.widget.TextViewCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.extinctspecie.betman.LVAdapterTVBookmarked;
 import com.extinctspecie.betman.LVAdapterTVToday;
 import com.extinctspecie.betman.R;
-import com.extinctspecie.betman.helpers.Fonts;
 import com.extinctspecie.betman.helpers.Log;
 import com.extinctspecie.betman.models.TodayItem;
 import com.extinctspecie.betman.services.ITodayService;
@@ -49,7 +44,7 @@ public class TabViewToday extends Fragment {
         View view = inflater.inflate(R.layout.tab_view_today, container, false);
 
         listView = (ListView) view.findViewById(R.id.lvTVToday);
-        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.srlSwipeRefresh);
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.tvTodaySwipeRefresh);
 
         populateListView(view);
         registerRefreshListener();
@@ -63,6 +58,7 @@ public class TabViewToday extends Fragment {
             @Override
             public void onRefresh() {
                 Log.v(TAG,"Refresh was triggered");
+                populateListView(getView());
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -70,9 +66,9 @@ public class TabViewToday extends Fragment {
 
     private void populateListView(View view) {
 
-        final LinearLayout linlaHeaderProgress = (LinearLayout) view.findViewById(R.id.linlaHeaderProgress);
+        final LinearLayout tvTodayProgress = (LinearLayout) view.findViewById(R.id.tvTodayLoadingProgress);
 
-        linlaHeaderProgress.setVisibility(View.VISIBLE);
+        tvTodayProgress.setVisibility(View.VISIBLE);
         ITodayService.Factory.getInstance().getTodayItems().enqueue(new Callback<List<TodayItem>>() {
             @Override
             public void onResponse(Call<List<TodayItem>> call, Response<List<TodayItem>> response) {
@@ -84,14 +80,14 @@ public class TabViewToday extends Fragment {
                 listView.setAdapter(lvAdapterTVToday);
 
                 //dismiss loading circle
-                linlaHeaderProgress.setVisibility(View.GONE);
+                tvTodayProgress.setVisibility(View.GONE);
             }
 
             @Override
             public void onFailure(Call<List<TodayItem>> call, Throwable t) {
                 Log.v(TAG, "Failed to get today items");
                 //popup for error
-                linlaHeaderProgress.setVisibility(View.GONE);
+                tvTodayProgress.setVisibility(View.GONE);
             }
         });
 

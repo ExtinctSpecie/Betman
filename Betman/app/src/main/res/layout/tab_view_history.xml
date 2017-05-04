@@ -3,10 +3,39 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-<android.support.v7.widget.AppCompatTextView
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/tvHistorySwipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
+            android:id="@+id/lvTVHistory"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:background="@color/deepPurplePrimary"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            />
+
+    </android.support.v4.widget.SwipeRefreshLayout>
+<TextView
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:text="History Tab View"
-    android:layout_centerInParent="true"/>
+    android:layout_centerInParent="true"
+    android:text="HELLO HISTORY"/>
+    <LinearLayout
+        android:id="@+id/tvHistoryLoadingProgress"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:visibility="gone" >
 
+        <ProgressBar
+            android:id="@+id/pbHeaderProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+        </ProgressBar>
+    </LinearLayout>
 </RelativeLayout>

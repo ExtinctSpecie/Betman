@@ -6,32 +6,36 @@ package com.extinctspecie.betman.models;
 
 public class HistoryItem {
 
-    private String team1;
-    private String team2;
+    private String teamOne;
+    private String teamTwo;
     private String odd;
     private String prediction;
-    private String finish_score;
+    private String finishScore;
     private String result;
-    private String date_of_the_game;
-    private String time_of_the_game;
+    private String dateOfGame;
+    private String timeOfGame;
 
-    public HistoryItem() {
+
+    //empty constructor
+    public HistoryItem()
+    {
+
     }
 
-    public String getTeam1() {
-        return team1;
+    public String getTeamOne() {
+        return teamOne;
     }
 
-    public void setTeam1(String team1) {
-        this.team1 = team1;
+    public void setTeamOne(String teamOne) {
+        this.teamOne = teamOne;
     }
 
-    public String getTeam2() {
-        return team2;
+    public String getTeamTwo() {
+        return teamTwo;
     }
 
-    public void setTeam2(String team2) {
-        this.team2 = team2;
+    public void setTeamTwo(String teamTwo) {
+        this.teamTwo = teamTwo;
     }
 
     public String getOdd() {
@@ -50,12 +54,12 @@ public class HistoryItem {
         this.prediction = prediction;
     }
 
-    public String getFinish_score() {
-        return finish_score;
+    public String getFinishScore() {
+        return finishScore;
     }
 
-    public void setFinish_score(String finish_score) {
-        this.finish_score = finish_score;
+    public void setFinishScore(String finishScore) {
+        this.finishScore = finishScore;
     }
 
     public String getResult() {
@@ -66,19 +70,19 @@ public class HistoryItem {
         this.result = result;
     }
 
-    public String getDate_of_the_game() {
-        return date_of_the_game;
+    public String getDateOfGame() {
+        return dateOfGame;
     }
 
-    public void setDate_of_the_game(String date_of_the_game) {
-        this.date_of_the_game = date_of_the_game;
+    public void setDateOfGame(String dateOfGame) {
+        this.dateOfGame = dateOfGame;
     }
 
-    public String getTime_of_the_game() {
-        return time_of_the_game;
+    public String getTimeOfGame() {
+        return timeOfGame;
     }
 
-    public void setTime_of_the_game(String time_of_the_game) {
-        this.time_of_the_game = time_of_the_game;
+    public void setTimeOfGame(String timeOfGame) {
+        this.timeOfGame = timeOfGame;
     }
 }
