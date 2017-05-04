@@ -36,7 +36,7 @@ public class TabViewVIPTips extends Fragment
         lvAdapterTVBookmarked = new LVAdapterTVBookmarked();
 
         listView.setAdapter(lvAdapterTVBookmarked);
-        //populateListView(view);
+        //populateListView(tabVipView);
 
         return view;
     }
