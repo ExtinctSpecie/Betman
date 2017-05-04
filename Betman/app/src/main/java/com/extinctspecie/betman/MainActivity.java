@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
     private TabViewAdapter tabViewAdapter;
     private ViewPager viewPager;
     private SmartTabLayout viewPagerTab;
-    private Fragment tabViewTodayFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
         viewPager = (ViewPager) findViewById(R.id.container);
         viewPager.setAdapter(tabViewAdapter);
-        viewPager.setOffscreenPageLimit(4);
+        viewPager.setOffscreenPageLimit(3);
         viewPagerTab = (SmartTabLayout) findViewById(R.id.tabsLayout);
         viewPagerTab.setViewPager(viewPager);
-
-
-        tabViewTodayFragment = tabViewAdapter.getTabViewToday();
 
 
     }

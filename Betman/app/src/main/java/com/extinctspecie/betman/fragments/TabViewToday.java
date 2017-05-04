@@ -63,6 +63,7 @@ public class TabViewToday extends Fragment {
             @Override
             public void onRefresh() {
                 Log.v(TAG,"Refresh was triggered");
+                swipeRefreshLayout.setRefreshing(false);
             }
         });
     }

@@ -18,10 +18,10 @@ import com.extinctspecie.betman.R;
 
 public class TabViewAdapter extends FragmentStatePagerAdapter
 {
-    private final int maxTabViews = 4;
+    private final int maxTabViews = 3;
     private final TabViewToday tabViewToday = new TabViewToday();
     private final TabViewVIP tabViewVIP = new TabViewVIP();
-    private final TabViewBookmarked tabViewBookmarked = new TabViewBookmarked();
+    private final TabViewVIPLive tabViewVIPLive = new TabViewVIPLive();
     private final TabViewHistory tabViewHistory = new TabViewHistory();
     private Context context;
 
@@ -41,8 +41,6 @@ public class TabViewAdapter extends FragmentStatePagerAdapter
             case 1:
                 return tabViewVIP;
             case 2:
-                return tabViewBookmarked;
-            case 3:
                 return tabViewHistory;
             default:
                 return null;
@@ -65,11 +63,6 @@ public class TabViewAdapter extends FragmentStatePagerAdapter
                 break;
             }
             case 2:
-            {
-                myDrawable = context.getResources().getDrawable(R.mipmap.ic_bookmark_black_24dp);
-                break;
-            }
-            case 3:
             {
                 myDrawable = context.getResources().getDrawable(R.mipmap.ic_history_black_24dp);
                 break;
@@ -98,8 +91,8 @@ public class TabViewAdapter extends FragmentStatePagerAdapter
         return tabViewVIP;
     }
 
-    public TabViewBookmarked getTabViewBookmarked() {
-        return tabViewBookmarked;
+    public TabViewVIPLive getTabViewVIPLive() {
+        return tabViewVIPLive;
     }
 
     public TabViewHistory getTabViewHistory() {

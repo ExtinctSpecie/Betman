@@ -10,18 +10,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.extinctspecie.betman.LVAdapterTVBookmarked;
-import com.extinctspecie.betman.LVAdapterTVToday;
 import com.extinctspecie.betman.R;
 import com.extinctspecie.betman.helpers.Log;
-import com.extinctspecie.betman.models.TodayItem;
-
-import java.util.List;
 
 /**
  * Created by WorkSpace on 5/1/2017.
  */
 
-public class TabViewBookmarked extends Fragment
+public class TabViewVIPLive extends Fragment
 {
     private TextView tvVs;
     private String TAG = this.getClass().getSimpleName();
@@ -33,7 +29,7 @@ public class TabViewBookmarked extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.tab_view_bookmarked,container,false);
+        View view = inflater.inflate(R.layout.tab_view_vip_tips,container,false);
 
         listView = (ListView) view.findViewById(R.id.lvTVBookmarked);
 
