@@ -83,20 +83,6 @@ public class TabViewToday extends Fragment {
                 //set adapter
                 listView.setAdapter(lvAdapterTVToday);
 
-                //on long click bookmark the item
-                listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
-                    @Override
-                    public boolean onItemLongClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                        if(!LVAdapterTVBookmarked.getItemList().contains(view))
-                            LVAdapterTVBookmarked.addView(view);
-
-                        Log.v(TAG,"added a new item");
-
-                        return true;
-                    }
-                });
-
                 //dismiss loading circle
                 linlaHeaderProgress.setVisibility(View.GONE);
             }

@@ -19,54 +19,11 @@ import com.extinctspecie.betman.helpers.Log;
 
 public class TabViewVIPLive extends Fragment
 {
-    private TextView tvVs;
-    private String TAG = this.getClass().getSimpleName();
-    private ListView listView;
-    private static LVAdapterTVBookmarked lvAdapterTVBookmarked;
 
-    //on destroy method will return to onCreateView instead of onCreate
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.tab_view_vip_tips,container,false);
-
-        listView = (ListView) view.findViewById(R.id.lvTVBookmarked);
-
-        lvAdapterTVBookmarked = new LVAdapterTVBookmarked();
-
-        listView.setAdapter(lvAdapterTVBookmarked);
-        //populateListView(view);
-
-        return view;
-    }
-
-    private void populateListView(View view)
-    {
-        if(LVAdapterTVBookmarked.getItemList().size() > 1)
-        {
-            lvAdapterTVBookmarked = new LVAdapterTVBookmarked();
-
-        }
-        else
-        {
-            Log.v(TAG,"Need to add items before setting the adapter");
-        }
-    }
-
-    public static void addView(View view)
-    {
-        LVAdapterTVBookmarked.addView(view);
-    }
-
-    @Override
-    public void setUserVisibleHint(boolean isVisibleToUser) {
-        super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-
-               lvAdapterTVBookmarked.notifyDataSetChanged();
-
-        } else {
-        }
+        View view = inflater.inflate(R.layout.tab_view_vip_live,container,false);
+        return  view;
     }
 }
