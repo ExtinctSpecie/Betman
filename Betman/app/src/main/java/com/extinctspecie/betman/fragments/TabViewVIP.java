@@ -33,6 +33,8 @@ public class TabViewVIP extends Fragment
 
         viewPager.setAdapter(tabViewAdapterVIP);
 
+        //test commit
+
         viewPager.setOffscreenPageLimit(2);
 
         viewPagerTab = (SmartTabLayout) view.findViewById(R.id.vipTabLayout);
