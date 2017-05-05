@@ -6,12 +6,8 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
-import android.widget.TextView;
 
-import com.extinctspecie.betman.LVAdapterTVBookmarked;
 import com.extinctspecie.betman.R;
-import com.extinctspecie.betman.helpers.Log;
 
 /**
  * Created by WorkSpace on 5/1/2017.

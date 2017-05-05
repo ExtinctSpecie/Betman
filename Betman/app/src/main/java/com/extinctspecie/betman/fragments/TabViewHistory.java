@@ -11,7 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.extinctspecie.betman.LVAdapterTVHistory;
+import com.extinctspecie.betman.adapters.LVAdapterTVHistory;
 import com.extinctspecie.betman.R;
 import com.extinctspecie.betman.helpers.Log;
 import com.extinctspecie.betman.models.HistoryItem;
@@ -76,6 +76,13 @@ public class TabViewHistory extends Fragment
                 if(historyItems.size() > 0)
                 {
                     lvAdapterHistory = new LVAdapterTVHistory(getActivity().getBaseContext(), historyItems);
+
+
+                    for (HistoryItem item :
+                            historyItems) {
+                        Log.v(TAG, item.getTeamOne());
+                    }
+
                     //set adapter
                     listView.setAdapter(lvAdapterHistory);
                 }

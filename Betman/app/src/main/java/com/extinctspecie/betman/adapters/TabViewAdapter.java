@@ -1,4 +1,4 @@
-package com.extinctspecie.betman.fragments;
+package com.extinctspecie.betman.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
@@ -11,6 +11,10 @@ import android.text.style.DynamicDrawableSpan;
 import android.text.style.ImageSpan;
 
 import com.extinctspecie.betman.R;
+import com.extinctspecie.betman.fragments.TabViewHistory;
+import com.extinctspecie.betman.fragments.TabViewToday;
+import com.extinctspecie.betman.fragments.TabViewVIP;
+import com.extinctspecie.betman.fragments.TabViewVIPLive;
 
 /**
  * Created by WorkSpace on 5/1/2017.

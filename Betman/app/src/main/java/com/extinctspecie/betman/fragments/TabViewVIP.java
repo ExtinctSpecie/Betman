@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 import com.extinctspecie.betman.R;
+import com.extinctspecie.betman.adapters.TabViewAdapterVIP;
 import com.extinctspecie.betman.helpers.Log;
 import com.extinctspecie.betman.util.IabHelper;
 import com.extinctspecie.betman.util.IabResult;

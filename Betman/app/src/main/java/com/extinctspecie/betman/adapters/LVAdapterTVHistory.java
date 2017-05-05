@@ -1,4 +1,4 @@
-package com.extinctspecie.betman;
+package com.extinctspecie.betman.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;

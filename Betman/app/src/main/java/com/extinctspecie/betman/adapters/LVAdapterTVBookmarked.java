@@ -1,4 +1,4 @@
-package com.extinctspecie.betman;
+package com.extinctspecie.betman.adapters;
 
 import android.view.View;
 import android.view.ViewGroup;

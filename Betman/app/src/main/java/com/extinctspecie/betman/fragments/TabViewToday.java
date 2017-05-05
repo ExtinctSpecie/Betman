@@ -11,13 +11,11 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.extinctspecie.betman.LVAdapterTVToday;
+import com.extinctspecie.betman.adapters.LVAdapterTVToday;
 import com.extinctspecie.betman.R;
 import com.extinctspecie.betman.helpers.Log;
 import com.extinctspecie.betman.models.TodayItem;
 import com.extinctspecie.betman.services.ITodayService;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.reward.RewardedVideoAd;
 
 import java.util.List;
 

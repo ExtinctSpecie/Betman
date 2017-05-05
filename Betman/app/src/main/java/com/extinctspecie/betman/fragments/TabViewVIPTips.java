@@ -9,9 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.extinctspecie.betman.LVAdapterTVBookmarked;
+import com.extinctspecie.betman.adapters.LVAdapterTVBookmarked;
 import com.extinctspecie.betman.R;
-import com.extinctspecie.betman.helpers.Log;
 
 /**
  * Created by WorkSpace on 5/4/2017.

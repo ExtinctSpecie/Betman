@@ -1,4 +1,4 @@
-package com.extinctspecie.betman;
+package com.extinctspecie.betman.adapters;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.extinctspecie.betman.R;
 import com.extinctspecie.betman.helpers.Fonts;
 import com.extinctspecie.betman.models.TodayItem;
 import java.util.List;

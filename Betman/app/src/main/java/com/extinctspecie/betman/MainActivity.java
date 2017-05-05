@@ -2,7 +2,6 @@ package com.extinctspecie.betman;
 
 import android.content.DialogInterface;
 import android.graphics.Color;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
@@ -13,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 
-import com.extinctspecie.betman.fragments.TabViewAdapter;
+import com.extinctspecie.betman.adapters.TabViewAdapter;
 import com.extinctspecie.betman.helpers.Fonts;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 

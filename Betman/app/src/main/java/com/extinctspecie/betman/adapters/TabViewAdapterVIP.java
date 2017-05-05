@@ -1,9 +1,12 @@
-package com.extinctspecie.betman.fragments;
+package com.extinctspecie.betman.adapters;
 
 import android.content.Context;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
+
+import com.extinctspecie.betman.fragments.TabViewVIPLive;
+import com.extinctspecie.betman.fragments.TabViewVIPTips;
 
 /**
  * Created by WorkSpace on 5/4/2017.
