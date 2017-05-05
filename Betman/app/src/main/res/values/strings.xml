@@ -1,4 +1,7 @@
 <resources>
+
+    <string name="googlePlayPublicKey">My Google Play Public Key</string>
+
     <string name="app_name">Betman</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>

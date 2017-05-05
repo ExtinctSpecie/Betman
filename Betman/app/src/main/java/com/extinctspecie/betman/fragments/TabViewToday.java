@@ -16,6 +16,8 @@ import com.extinctspecie.betman.R;
 import com.extinctspecie.betman.helpers.Log;
 import com.extinctspecie.betman.models.TodayItem;
 import com.extinctspecie.betman.services.ITodayService;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
 
 import java.util.List;
 
@@ -35,7 +37,6 @@ public class TabViewToday extends Fragment {
     private ListView listView;
     private LVAdapterTVToday lvAdapterTVToday;
     private SwipeRefreshLayout swipeRefreshLayout;
-
 
     @Nullable
     @Override
@@ -57,7 +58,7 @@ public class TabViewToday extends Fragment {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Log.v(TAG,"Refresh was triggered");
+                Log.v(TAG, "Refresh was triggered");
                 populateListView(getView());
                 swipeRefreshLayout.setRefreshing(false);
             }

@@ -8,13 +8,12 @@ public class TodayItem
 {
 
     private long id;
-    private String team1;
-    private String team2;
+    private String teamOne;
+    private String teamTwo;
     private String odd;
     private String prediction;
-    private String date_of_the_game;
-    private String time_of_the_game;
-    private String won_lost;
+    private String dateOfGame;
+    private String timeOfGame;
 
     //empty constructor
     public TodayItem()
@@ -30,20 +29,20 @@ public class TodayItem
         this.id = id;
     }
 
-    public String getTeam1() {
-        return team1;
+    public String getTeamOne() {
+        return teamOne;
     }
 
-    public void setTeam1(String team1) {
-        this.team1 = team1;
+    public void setTeamOne(String teamOne) {
+        this.teamOne = teamOne;
     }
 
-    public String getTeam2() {
-        return team2;
+    public String getTeamTwo() {
+        return teamTwo;
     }
 
-    public void setTeam2(String team2) {
-        this.team2 = team2;
+    public void setTeamTwo(String teamTwo) {
+        this.teamTwo = teamTwo;
     }
 
     public String getOdd() {
@@ -62,28 +61,20 @@ public class TodayItem
         this.prediction = prediction;
     }
 
-    public String getDate_of_the_game() {
-        return date_of_the_game;
+    public String getDateOfGame() {
+        return dateOfGame;
     }
 
-    public void setDate_of_the_game(String date_of_the_game) {
-        this.date_of_the_game = date_of_the_game;
+    public void setDateOfGame(String dateOfGame) {
+        this.dateOfGame = dateOfGame;
     }
 
-    public String getTime_of_the_game() {
-        return time_of_the_game;
+    public String getTimeOfGame() {
+        return timeOfGame;
     }
 
-    public void setTime_of_the_game(String time_of_the_game) {
-        this.time_of_the_game = time_of_the_game;
-    }
-
-    public String getWon_lost() {
-        return won_lost;
-    }
-
-    public void setWon_lost(String won_lost) {
-        this.won_lost = won_lost;
+    public void setTimeOfGame(String timeOfGame) {
+        this.timeOfGame = timeOfGame;
     }
 
 //    private long id;

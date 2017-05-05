@@ -91,15 +91,15 @@ public class LVAdapterTVToday extends BaseAdapter
 
         item = todayItems.get(position);
 
-        viewHolder.tvTeamOne.setText(item.getTeam1());
+        viewHolder.tvTeamOne.setText(item.getTeamOne());
 
-        viewHolder.tvTeamTwo.setText(item.getTeam2());
+        viewHolder.tvTeamTwo.setText(item.getTeamTwo());
 
         viewHolder.tvPrediction.setText(item.getPrediction());
 
         viewHolder.tvOdd.setText(item.getOdd());
 
-        viewHolder.tvTime.setText(item.getTime_of_the_game().substring(11,16));
+//        viewHolder.tvTime.setText(item.getTimeOfGame().substring(11,16));
 
         return view;
     }
