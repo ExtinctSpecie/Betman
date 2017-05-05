@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:ads="http://schemas.android.com/tools"
-    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:orientation="vertical">
 
     <RelativeLayout
-        android:layout_width="match_parent"
         android:id="@+id/subLayout"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        >
+        android:visibility="gone">
 
 
         <android.support.design.widget.AppBarLayout
@@ -24,54 +23,87 @@
                 android:id="@+id/vipTabLayout"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                app:stl_indicatorAlwaysInCenter="false"
-                app:stl_indicatorWithoutPadding="false"
-                app:stl_indicatorInFront="false"
-                app:stl_indicatorInterpolation="smart"
-                app:stl_indicatorGravity="bottom"
-                app:stl_indicatorColor="#ffffff"
-                app:stl_indicatorThickness="50dp"
-                app:stl_indicatorWidth="auto"
-                app:stl_indicatorCornerRadius="2dp"
-                app:stl_overlineColor="#4dffffff"
-                app:stl_overlineThickness="0dp"
-                app:stl_underlineColor="#4dffffff"
-                app:stl_underlineThickness="1dp"
-                app:stl_dividerColor="#4dffffff"
-                app:stl_dividerThickness="0dp"
                 android:background="@color/deepPurplePrimaryDark"
+                app:stl_clickable="true"
                 app:stl_defaultTabBackground="?attr/selectableItemBackground"
                 app:stl_defaultTabTextAllCaps="false"
                 app:stl_defaultTabTextColor="#FC000000"
-                app:stl_defaultTabTextSize="12sp"
                 app:stl_defaultTabTextHorizontalPadding="16dp"
                 app:stl_defaultTabTextMinWidth="0dp"
+                app:stl_defaultTabTextSize="12sp"
                 app:stl_distributeEvenly="true"
-                app:stl_clickable="true"
-                app:stl_titleOffset="24dp"
+                app:stl_dividerColor="#4dffffff"
+                app:stl_dividerThickness="0dp"
                 app:stl_drawDecorationAfterTab="false"
-                />
+                app:stl_indicatorAlwaysInCenter="false"
+                app:stl_indicatorColor="#ffffff"
+                app:stl_indicatorCornerRadius="2dp"
+                app:stl_indicatorGravity="bottom"
+                app:stl_indicatorInFront="false"
+                app:stl_indicatorInterpolation="smart"
+                app:stl_indicatorThickness="50dp"
+                app:stl_indicatorWidth="auto"
+                app:stl_indicatorWithoutPadding="false"
+                app:stl_overlineColor="#4dffffff"
+                app:stl_overlineThickness="0dp"
+                app:stl_titleOffset="24dp"
+                app:stl_underlineColor="#4dffffff"
+                app:stl_underlineThickness="1dp" />
         </android.support.design.widget.AppBarLayout>
 
         <android.support.v4.view.ViewPager
             android:id="@+id/vpVIPTabContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"
-            />
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
     </RelativeLayout>
+
     <RelativeLayout
         android:id="@+id/noSubLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Tips"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:background="@color/deepPurplePrimary"
+                android:textColor="@color/black"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Live"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:background="@color/deepPurplePrimaryDark"
+                android:textColor="@color/black"/>
+
+        </LinearLayout>
+
         <Button
             android:id="@+id/btnSub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:text="Subscribe"
-            android:textAllCaps="false"/>
+            android:textAllCaps="false" />
+
+        <TextView
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/btnSub"
+            android:layout_centerHorizontal="true"
+            android:text="@string/notSubText"
+            android:textAlignment="center"
+            android:textStyle="bold" />
 
     </RelativeLayout>
-
 </RelativeLayout>

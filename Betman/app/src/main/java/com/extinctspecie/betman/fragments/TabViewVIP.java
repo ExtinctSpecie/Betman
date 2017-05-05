@@ -62,6 +62,7 @@ public class TabViewVIP extends Fragment implements RewardedVideoAdListener
         viewPagerTab.setViewPager(viewPager);
 
         base64EncodedPublicKey = getResources().getString(R.string.googlePlayPublicKey);
+
         setupIabHelper();
 
         loadAd();
@@ -90,7 +91,11 @@ public class TabViewVIP extends Fragment implements RewardedVideoAdListener
                 if(rewardedVideoAd.isLoaded())
                     rewardedVideoAd.show();
                 tabVipView.findViewById(R.id.noSubLayout).setVisibility(View.GONE);
+
+                //tabVipView.findViewById(R.id.btnSub).setVisibility(View.GONE);
+
                 tabVipView.findViewById(R.id.subLayout).setVisibility(View.VISIBLE);
+             //   tabVipView.findViewById(R.id.vpVIPTabContainer).setVisibility(View.VISIBLE);
             }
         });
 

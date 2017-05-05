@@ -11,4 +11,7 @@
     <string name="tv_marked_title">Marked</string>
     <string name="tv_history_title">History</string>
 
+
+    <string name="notSubText">Για να δείτε τους VIP αγώνες πρέπει να γίνεται VIP μέλοι \n Πατήστε το παρακάτω κουμπκάκι να κάνετε εγγραφή</string>
+
 </resources>

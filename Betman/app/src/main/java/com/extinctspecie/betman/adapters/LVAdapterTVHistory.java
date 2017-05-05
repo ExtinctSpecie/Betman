@@ -113,7 +113,7 @@ public class LVAdapterTVHistory extends BaseAdapter
         viewHolder.tvFinalScore.setText(item.getFinalScore());
 
         if (item.getResult().equals("true")){
-            viewHolder.llHistoryItem.setBackgroundColor(Color.parseColor("#69F0AE"));
+            viewHolder.llHistoryItem.setBackgroundColor((context.getResources().getColor(R.color.historyWonGreen)));
         }
 
 
