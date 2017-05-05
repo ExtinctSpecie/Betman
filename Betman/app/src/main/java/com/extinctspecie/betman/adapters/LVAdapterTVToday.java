@@ -100,7 +100,7 @@ public class LVAdapterTVToday extends BaseAdapter
 
         viewHolder.tvOdd.setText(item.getOdd());
 
-//        viewHolder.tvTime.setText(item.getTimeOfGame().substring(11,16));
+        viewHolder.tvTime.setText(item.getTimeOfGame().substring(11,16));
 
         return view;
     }
