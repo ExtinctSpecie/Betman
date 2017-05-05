@@ -20,7 +20,7 @@ public interface ITodayService {
 
 
     //put end point in @GET
-    @GET("free_predictions")
+    @GET("today_free")
     Call<List<TodayItem>> getTodayItems();
 
     public class Factory {

@@ -105,8 +105,8 @@ public class TabViewVIP extends Fragment implements RewardedVideoAdListener
 
         if(!rewardedVideoAd.isLoaded())
         {
-            rewardedVideoAd.loadAd("ca-app-pub-5589078228018183/6855571755",new AdRequest.Builder().addTestDevice("3EB343D358054E964662424F2E66643B").build());
-            Log.v(TAG,"add was loaded");
+            rewardedVideoAd.loadAd("ca-app-pub-5589078228018183/9750162554",new AdRequest.Builder().build());
+            Log.v(TAG,"ad was loaded");
         }
 
     }

@@ -75,10 +75,12 @@ public class TabViewToday extends Fragment {
             public void onResponse(Call<List<TodayItem>> call, Response<List<TodayItem>> response) {
                 todayItems = response.body();
 
-
-                lvAdapterTVToday = new LVAdapterTVToday(getActivity().getBaseContext(), todayItems);
-                //set adapter
-                listView.setAdapter(lvAdapterTVToday);
+                if(todayItems.size() > 0)
+                {
+                    lvAdapterTVToday = new LVAdapterTVToday(getActivity().getBaseContext(), todayItems);
+                    //set adapter
+                    listView.setAdapter(lvAdapterTVToday);
+                }
 
                 //dismiss loading circle
                 tvTodayProgress.setVisibility(View.GONE);
