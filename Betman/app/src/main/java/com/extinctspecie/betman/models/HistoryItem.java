@@ -10,7 +10,7 @@ public class HistoryItem {
     private String teamTwo;
     private String odd;
     private String prediction;
-    private String finishScore;
+    private String finalScore;
     private String result;
     private String dateOfGame;
     private String timeOfGame;
@@ -54,12 +54,12 @@ public class HistoryItem {
         this.prediction = prediction;
     }
 
-    public String getFinishScore() {
-        return finishScore;
+    public String getFinalScore() {
+        return finalScore;
     }
 
-    public void setFinishScore(String finishScore) {
-        this.finishScore = finishScore;
+    public void setFinalScore(String finalScore) {
+        this.finalScore = finalScore;
     }
 
     public String getResult() {

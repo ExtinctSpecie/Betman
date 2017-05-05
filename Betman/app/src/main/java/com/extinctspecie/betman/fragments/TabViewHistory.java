@@ -78,13 +78,15 @@ public class TabViewHistory extends Fragment
                     lvAdapterHistory = new LVAdapterTVHistory(getActivity().getBaseContext(), historyItems);
 
 
-                    for (HistoryItem item :
-                            historyItems) {
-                        Log.v(TAG, item.getTeamOne());
+                    if(historyItems.size() > 0)
+                    {
+                        lvAdapterHistory = new LVAdapterTVHistory(getActivity().getBaseContext(), historyItems);
+                        //set adapter
+                        listView.setAdapter(lvAdapterHistory);
                     }
 
                     //set adapter
-                    listView.setAdapter(lvAdapterHistory);
+                    //listView.setAdapter(lvAdapterHistory);
                 }
 
                 //dismiss loading circle
