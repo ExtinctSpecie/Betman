@@ -1,10 +1,12 @@
 package com.extinctspecie.betman.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.extinctspecie.betman.R;
@@ -77,11 +79,12 @@ public class LVAdapterTVHistory extends BaseAdapter
             viewHolder.tvDate = (TextView) view.findViewById(R.id.tvDate);
             viewHolder.tvDate.setTypeface(Fonts.getSFDiegoSans());
 
-            viewHolder.tvResult = (TextView) view.findViewById(R.id.tvResult);
-            viewHolder.tvResult.setTypeface(Fonts.getSFDiegoSans());
 
             viewHolder.tvFinalScore = (TextView) view.findViewById(R.id.tvFinalScore);
-            viewHolder.tvFinalScore.setTypeface(Fonts.getSFDiegoSans());
+            //viewHolder.tvFinalScore.setTypeface(Fonts.getSFDiegoSans());
+
+
+            viewHolder.llHistoryItem = (LinearLayout) view.findViewById(R.id.llHistoryItem);
 
             //tvTemp = (TextView) view.findViewById(R.id.tvOddSymbol);
             //tvTemp.setTypeface(Fonts.getSFDiegoSans());
@@ -97,7 +100,7 @@ public class LVAdapterTVHistory extends BaseAdapter
 
         viewHolder.tvTime.setText(item.getTimeOfGame().substring(11,16));
 
-        viewHolder.tvDate.setText(item.getDateOfGame());
+        viewHolder.tvDate.setText(item.getDateOfGame().replace("-", "/"));
 
         viewHolder.tvTeamOne.setText(item.getTeamOne());
 
@@ -109,7 +112,10 @@ public class LVAdapterTVHistory extends BaseAdapter
 
         viewHolder.tvFinalScore.setText(item.getFinalScore());
 
-        viewHolder.tvResult.setText(item.getResult());
+        if (item.getResult().equals("true")){
+            viewHolder.llHistoryItem.setBackgroundColor(Color.parseColor("#69F0AE"));
+        }
+
 
 //        viewHolder.tvTime.setText(item.getTimeOfGame().substring(11,16));
 
@@ -123,8 +129,8 @@ public class LVAdapterTVHistory extends BaseAdapter
         TextView tvPrediction;
         TextView tvOdd;
         TextView tvDate;
-        TextView tvResult;
         TextView tvFinalScore;
+        LinearLayout llHistoryItem;
     }
 
 }
