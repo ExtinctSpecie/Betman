@@ -1,6 +1,7 @@
 package com.extinctspecie.betman.fragments;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.extinctspecie.betman.R;
 import com.extinctspecie.betman.adapters.LVAdapterTVVIPLive;
+import com.extinctspecie.betman.helpers.InternetConnectionDetector;
 import com.extinctspecie.betman.helpers.Log;
 import com.extinctspecie.betman.models.VIPLiveItem;
 import com.extinctspecie.betman.services.IVIPLiveService;
@@ -43,6 +45,7 @@ public class TabViewVIPLive extends Fragment
 
 
 
+
         listView.setAdapter(lvAdapterTVVIPLive);
         //populateListView(tabVipView);
         populateListView(view);
@@ -54,6 +57,7 @@ public class TabViewVIPLive extends Fragment
         final LinearLayout tvTodayProgress = (LinearLayout) view.findViewById(R.id.tvVIPLiveLoadingProgress);
 
         tvTodayProgress.setVisibility(View.VISIBLE);
+
 
         IVIPLiveService.Factory.getInstance().getVIPLiveItems().enqueue(new Callback<List<VIPLiveItem>>() {
             @Override
