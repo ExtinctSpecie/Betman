@@ -12,7 +12,8 @@
         android:elevation="5dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:padding="10dp"
-        app:cardCornerRadius="4dp">
+        app:cardCornerRadius="4dp"
+        app:cardBackgroundColor="#ffd700">
 
         <LinearLayout
             android:layout_width="match_parent"
