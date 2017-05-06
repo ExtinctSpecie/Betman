@@ -1,5 +1,8 @@
 package com.extinctspecie.betman;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
@@ -15,9 +18,13 @@ import android.widget.Toast;
 
 import com.extinctspecie.betman.adapters.TabViewAdapter;
 import com.extinctspecie.betman.helpers.Fonts;
+import com.extinctspecie.betman.helpers.InternetConnectionDetector;
+import com.extinctspecie.betman.helpers.Log;
 import com.kobakei.ratethisapp.RateThisApp;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.onesignal.OneSignal;
+
+import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,28 +32,38 @@ public class MainActivity extends AppCompatActivity {
     private TabViewAdapter tabViewAdapter;
     private ViewPager viewPager;
     private SmartTabLayout viewPagerTab;
+    private String TAG = this.getClass().getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        OneSignal.startInit(this)
-                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
-                .unsubscribeWhenNotificationsAreDisabled(true)
-                .init();
-        setContentView(R.layout.activity_main);
 
-        //sxolio gia push :p
-        showRateDialog();
 
-        initializeCustomFonts();
+        Log.v(TAG, String.valueOf(InternetConnectionDetector.hasActiveInternetConnection(this)));
 
-        tabViewAdapter = new TabViewAdapter(getSupportFragmentManager() , getApplicationContext());
+        if(InternetConnectionDetector.hasActiveInternetConnection(this))
+        {
+            OneSignal.startInit(this)
+                    .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                    .unsubscribeWhenNotificationsAreDisabled(true)
+                    .init();
+            setContentView(R.layout.activity_main);
+            showRateDialog();
 
-        viewPager = (ViewPager) findViewById(R.id.container);
-        viewPager.setAdapter(tabViewAdapter);
-        viewPager.setOffscreenPageLimit(3);
-        viewPagerTab = (SmartTabLayout) findViewById(R.id.tabsLayout);
-        viewPagerTab.setViewPager(viewPager);
+            initializeCustomFonts();
+
+            tabViewAdapter = new TabViewAdapter(getSupportFragmentManager() , getApplicationContext());
+
+            viewPager = (ViewPager) findViewById(R.id.container);
+            viewPager.setAdapter(tabViewAdapter);
+            viewPager.setOffscreenPageLimit(3);
+            viewPagerTab = (SmartTabLayout) findViewById(R.id.tabsLayout);
+            viewPagerTab.setViewPager(viewPager);
+        }
+        else
+            setContentView(R.layout.activity_main_no_internet);
+
+        noInternetConnectionPopup();
 
 
     }
@@ -115,15 +132,32 @@ public class MainActivity extends AppCompatActivity {
         // Show a dialog if criteria is satisfied
         RateThisApp.showRateDialogIfNeeded(this);
     }
-    //
-//
-//
-//    private void setupToolbar()
-//    {
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        toolbar.setTitle("Betman");
-//        toolbar.setLogo(R.mipmap.ic_logo_24dp);
-//        setSupportActionBar(toolbar);
-//    }
+    public void noInternetConnectionPopup()
+    {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Network connection error , please connect to the internet and try again.")
+                .setCancelable(true)
+                .setPositiveButton("Retry", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        restartSelf();
+                    }
+                });
+        AlertDialog alert = builder.create();
+        alert.show();
+
+        alert.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            @Override
+            public void onCancel(DialogInterface dialogInterface) {
+                restartSelf();
+            }
+        });
+    }
+    private void restartSelf() {
+        AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        am.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 500, // half of a second
+                PendingIntent.getActivity(this, 0, getIntent(), PendingIntent.FLAG_ONE_SHOT
+                        | PendingIntent.FLAG_CANCEL_CURRENT));
+        finish();
+    }
 
 }
