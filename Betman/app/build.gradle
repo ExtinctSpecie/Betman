@@ -25,7 +25,7 @@ android {
 dependencies {
     compile 'com.onesignal:OneSignal:3.+@aar'
     // Required for OneSignal, even if you have added FCM.
-    compile 'com.google.android.gms:play-services-gcm:+'
+    compile 'com.google.android.gms:play-services-gcm:10.2.1'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
