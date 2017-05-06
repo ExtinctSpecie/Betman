@@ -52,14 +52,16 @@ public class LVAdapterTVVIPTips extends BaseAdapter
     @Override
     public View getView(int i, View view, ViewGroup viewGroup)
     {
-        final LVAdapterTVToday.ViewHolder viewHolder;
+        final LVAdapterTVVIPTips.ViewHolder viewHolder;
 
 
         if(view==null)
         {
             TextView tvTemp;
-            viewHolder = new LVAdapterTVToday.ViewHolder();
-            view = layoutInflater.inflate(R.layout.lv_adapter_tv_today,null);
+            viewHolder = new LVAdapterTVVIPTips.ViewHolder();
+            view = layoutInflater.inflate(R.layout.lv_adapter_tv_vip_tips,null);
+
+
             viewHolder.tvTeamOne = (TextView) view.findViewById(R.id.tvTeamOne);
             viewHolder.tvTeamOne.setTypeface(Fonts.getSFDiegoSans());
 
@@ -85,10 +87,10 @@ public class LVAdapterTVVIPTips extends BaseAdapter
         }
         else
         {
-            viewHolder = (LVAdapterTVToday.ViewHolder) view.getTag();
+            viewHolder = (LVAdapterTVVIPTips.ViewHolder) view.getTag();
         }
 
-       // item = todayItems.get(position);
+        item = vipTipsItems.get(i);
 
         viewHolder.tvTeamOne.setText(item.getTeamOne());
 
@@ -98,7 +100,7 @@ public class LVAdapterTVVIPTips extends BaseAdapter
 
         viewHolder.tvOdd.setText(item.getOdd());
 
-        //viewHolder.tvTime.setText(item.getTimeOfGame().substring(11,16));
+        viewHolder.tvTime.setText(item.getTimeOfGame().substring(11,16));
 
 
 

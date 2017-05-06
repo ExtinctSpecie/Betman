@@ -6,11 +6,24 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.extinctspecie.betman.adapters.LVAdapterTVToday;
 import com.extinctspecie.betman.adapters.LVAdapterTVVIPTips;
 import com.extinctspecie.betman.R;
+import com.extinctspecie.betman.helpers.Log;
+import com.extinctspecie.betman.models.TodayItem;
+import com.extinctspecie.betman.models.VIPTipsItem;
+import com.extinctspecie.betman.services.ITodayService;
+import com.extinctspecie.betman.services.IVIPTipsService;
+
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by WorkSpace on 5/4/2017.
@@ -21,7 +34,8 @@ public class TabViewVIPTips extends Fragment
     private TextView tvVs;
     private String TAG = this.getClass().getSimpleName();
     private ListView listView;
-    private static LVAdapterTVVIPTips lvAdapterTVVIPTips;
+    private LVAdapterTVVIPTips lvAdapterTVVIPTips;
+    private List<VIPTipsItem> vipTipsItems;
 
     //on destroy method will return to onCreateView instead of onCreate
     @Nullable
@@ -30,14 +44,47 @@ public class TabViewVIPTips extends Fragment
 
         View view = inflater.inflate(R.layout.tab_view_vip_tips,container,false);
 
-        listView = (ListView) view.findViewById(R.id.lvTVBookmarked);
+        listView = (ListView) view.findViewById(R.id.lvTVVIPTips);
 
-        lvAdapterTVVIPTips = new LVAdapterTVVIPTips();
+
 
         listView.setAdapter(lvAdapterTVVIPTips);
         //populateListView(tabVipView);
-
+        populateListView(view);
         return view;
+    }
+
+    private void populateListView(View view)
+    {
+        final LinearLayout tvTodayProgress = (LinearLayout) view.findViewById(R.id.tvVIPTipsLoadingProgress);
+
+        tvTodayProgress.setVisibility(View.VISIBLE);
+
+        IVIPTipsService.Factory.getInstance().getVIPTipsItems().enqueue(new Callback<List<VIPTipsItem>>() {
+            @Override
+            public void onResponse(Call<List<VIPTipsItem>> call, Response<List<VIPTipsItem>> response) {
+                vipTipsItems = response.body();
+
+                if(vipTipsItems.size() > 0)
+                {
+                    lvAdapterTVVIPTips = new LVAdapterTVVIPTips(getActivity().getBaseContext(),vipTipsItems);
+                    //set adapter
+                    listView.setAdapter(lvAdapterTVVIPTips);
+                }
+
+                //dismiss loading circle
+                tvTodayProgress.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<List<VIPTipsItem>> call, Throwable t) {
+                Log.v(TAG, "Failed to get today items");
+                //popup for error
+                tvTodayProgress.setVisibility(View.GONE);
+            }
+        });
+
+
     }
 
 

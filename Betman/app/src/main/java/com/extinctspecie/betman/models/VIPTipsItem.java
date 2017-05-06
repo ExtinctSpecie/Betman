@@ -10,7 +10,7 @@ public class VIPTipsItem
     private String teamTwo;
     private String odd;
     private String prediction;
-    private String time;
+    private String timeOfGame;
 
     public VIPTipsItem() {
     }
@@ -47,11 +47,11 @@ public class VIPTipsItem
         this.prediction = prediction;
     }
 
-    public String getTime() {
-        return time;
+    public String getTimeOfGame() {
+        return timeOfGame;
     }
 
-    public void setTime(String time) {
-        this.time = time;
+    public void setTimeOfGame(String timeOfGame) {
+        this.timeOfGame = timeOfGame;
     }
 }

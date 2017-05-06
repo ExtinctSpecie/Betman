@@ -27,7 +27,7 @@ import android.os.Bundle;
  *    after it completes.
  * 3. Purchase information of in-app purchases is maintained within the Google Play system
  *    till the purchase is consumed.
- * 4. An API to consume a purchase of an inapp item. All purchases of one-time
+ * 4. An API to consume a purchase of an inapp item. All purchases of one-timeOfGame
  *    in-app items are consumable and thereafter can be purchased again.
  * 5. An API to get current purchases of the user immediately. This will not contain any
  *    consumed purchases.
@@ -49,7 +49,7 @@ interface IInAppBillingService {
      * Minimum API version supported by this interface is 3.
      * @param apiVersion billing API version that the app is using
      * @param packageName the package name of the calling app
-     * @param type type of the in-app item being purchased ("inapp" for one-time purchases
+     * @param type type of the in-app item being purchased ("inapp" for one-timeOfGame purchases
      *        and "subs" for subscriptions)
      * @return RESULT_OK(0) on success and appropriate response code on failures.
      */
@@ -62,7 +62,7 @@ interface IInAppBillingService {
      * This API can be called with a maximum of 20 SKUs.
      * @param apiVersion billing API version that the app is using
      * @param packageName the package name of the calling app
-     * @param type of the in-app items ("inapp" for one-time purchases
+     * @param type of the in-app items ("inapp" for one-timeOfGame purchases
      *        and "subs" for subscriptions)
      * @param skusBundle bundle containing a StringArrayList of SKUs with key "ITEM_ID_LIST"
      * @return Bundle containing the following key-value pairs
@@ -86,7 +86,7 @@ interface IInAppBillingService {
      * @param apiVersion billing API version that the app is using
      * @param packageName package name of the calling app
      * @param sku the SKU of the in-app item as published in the developer console
-     * @param type of the in-app item being purchased ("inapp" for one-time purchases
+     * @param type of the in-app item being purchased ("inapp" for one-timeOfGame purchases
      *        and "subs" for subscriptions)
      * @param developerPayload optional argument to be sent back with the purchase information
      * @return Bundle containing the following key-value pairs
@@ -119,7 +119,7 @@ interface IInAppBillingService {
      * V1 and V2 that have not been consumed.
      * @param apiVersion billing API version that the app is using
      * @param packageName package name of the calling app
-     * @param type of the in-app items being requested ("inapp" for one-time purchases
+     * @param type of the in-app items being requested ("inapp" for one-timeOfGame purchases
      *        and "subs" for subscriptions)
      * @param continuationToken to be set as null for the first call, if the number of owned
      *        skus are too many, a continuationToken is returned in the response bundle.
@@ -196,7 +196,7 @@ interface IInAppBillingService {
      * @param apiVersion billing API version that the app is using, must be 6 or later
      * @param packageName package name of the calling app
      * @param sku the SKU of the in-app item as published in the developer console
-     * @param type of the in-app item being purchased ("inapp" for one-time purchases
+     * @param type of the in-app item being purchased ("inapp" for one-timeOfGame purchases
      *        and "subs" for subscriptions)
      * @param developerPayload optional argument to be sent back with the purchase information
      * @extraParams a Bundle with the following optional keys:
@@ -208,22 +208,22 @@ interface IInAppBillingService {
      *                          purchasing. Google Play replaces the specified SKUs at the start of
      *                          the next billing cycle.
      * "replaceSkusProration" - Boolean - whether the user should be credited for any unused
-     *                          subscription time on the SKUs they are upgrading or downgrading.
+     *                          subscription timeOfGame on the SKUs they are upgrading or downgrading.
      *                          If you set this field to true, Google Play swaps out the old SKUs
      *                          and credits the user with the unused value of their subscription
-     *                          time on a pro-rated basis.
+     *                          timeOfGame on a pro-rated basis.
      *                          Google Play applies this credit to the new subscription, and does
      *                          not begin billing the user for the new subscription until after
      *                          the credit is used up.
      *                          If you set this field to false, the user does not receive credit for
-     *                          any unused subscription time and the recurrence date does not
+     *                          any unused subscription timeOfGame and the recurrence date does not
      *                          change.
      *                          Default value is true. Ignored if you do not pass skusToReplace.
      *            "accountId" - String - an optional obfuscated string that is uniquely
      *                          associated with the user's account in your app.
      *                          If you pass this value, Google Play can use it to detect irregular
      *                          activity, such as many devices making purchases on the same
-     *                          account in a short period of time.
+     *                          account in a short period of timeOfGame.
      *                          Do not use the developer ID or the user's Google ID for this field.
      *                          In addition, this field should not contain the user's ID in
      *                          cleartext.
@@ -241,7 +241,7 @@ interface IInAppBillingService {
      * expired, canceled, or consumed.
      * @param apiVersion billing API version that the app is using, must be 6 or later
      * @param packageName package name of the calling app
-     * @param type of the in-app items being requested ("inapp" for one-time purchases
+     * @param type of the in-app items being requested ("inapp" for one-timeOfGame purchases
      *        and "subs" for subscriptions)
      * @param continuationToken to be set as null for the first call, if the number of owned
      *        skus is too large, a continuationToken is returned in the response bundle.
@@ -269,7 +269,7 @@ interface IInAppBillingService {
     * {@code extraParams} parameter.
     * @param apiVersion billing API version that the app is using, must be 7 or later
     * @param packageName package name of the calling app
-    * @param type of the in-app item being purchased ("inapp" for one-time purchases and "subs"
+    * @param type of the in-app item being purchased ("inapp" for one-timeOfGame purchases and "subs"
     *        for subscriptions)
     * @param extraParams a Bundle with the following optional keys:
     *        "vr" - Boolean - an optional flag to indicate whether {link #getBuyIntentExtraParams}
