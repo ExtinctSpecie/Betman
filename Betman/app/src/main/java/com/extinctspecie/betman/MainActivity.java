@@ -5,6 +5,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Color;
+import android.os.StrictMode;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
@@ -38,34 +39,37 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        int SDK_INT = android.os.Build.VERSION.SDK_INT;
+        if (SDK_INT > 8) {
 
-        Log.v(TAG, String.valueOf(InternetConnectionDetector.hasActiveInternetConnection(this)));
+            StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+                    .permitAll().build();
+            StrictMode.setThreadPolicy(policy);
 
-        if(InternetConnectionDetector.hasActiveInternetConnection(this))
-        {
-            OneSignal.startInit(this)
-                    .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
-                    .unsubscribeWhenNotificationsAreDisabled(true)
-                    .init();
-            setContentView(R.layout.activity_main);
-            showRateDialog();
+            if (InternetConnectionDetector.hasActiveInternetConnection(this)) {
+                OneSignal.startInit(this)
+                        .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                        .unsubscribeWhenNotificationsAreDisabled(true)
+                        .init();
+                setContentView(R.layout.activity_main);
+                showRateDialog();
 
-            initializeCustomFonts();
+                initializeCustomFonts();
 
-            tabViewAdapter = new TabViewAdapter(getSupportFragmentManager() , getApplicationContext());
+                tabViewAdapter = new TabViewAdapter(getSupportFragmentManager(), getApplicationContext());
 
-            viewPager = (ViewPager) findViewById(R.id.container);
-            viewPager.setAdapter(tabViewAdapter);
-            viewPager.setOffscreenPageLimit(3);
-            viewPagerTab = (SmartTabLayout) findViewById(R.id.tabsLayout);
-            viewPagerTab.setViewPager(viewPager);
+                viewPager = (ViewPager) findViewById(R.id.container);
+                viewPager.setAdapter(tabViewAdapter);
+                viewPager.setOffscreenPageLimit(3);
+                viewPagerTab = (SmartTabLayout) findViewById(R.id.tabsLayout);
+                viewPagerTab.setViewPager(viewPager);
+            } else {
+                
+                setContentView(R.layout.activity_main_no_internet);
+                noInternetConnectionPopup();
+            }
+
         }
-        else
-            setContentView(R.layout.activity_main_no_internet);
-
-        noInternetConnectionPopup();
-
-
     }
 
     private void initializeCustomFonts() {
@@ -97,10 +101,9 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if(!(viewPager.getCurrentItem() == 0)){
+        if (!(viewPager.getCurrentItem() == 0)) {
             viewPager.setCurrentItem(0);
-        }
-        else {
+        } else {
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage("Do you want to exit the app?")
                     .setCancelable(false)
@@ -132,8 +135,8 @@ public class MainActivity extends AppCompatActivity {
         // Show a dialog if criteria is satisfied
         RateThisApp.showRateDialogIfNeeded(this);
     }
-    public void noInternetConnectionPopup()
-    {
+
+    public void noInternetConnectionPopup() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Network connection error , please connect to the internet and try again.")
                 .setCancelable(true)
@@ -152,8 +155,9 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     private void restartSelf() {
-        AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         am.set(AlarmManager.RTC_WAKEUP, Calendar.getInstance().getTimeInMillis() + 500, // half of a second
                 PendingIntent.getActivity(this, 0, getIntent(), PendingIntent.FLAG_ONE_SHOT
                         | PendingIntent.FLAG_CANCEL_CURRENT));
