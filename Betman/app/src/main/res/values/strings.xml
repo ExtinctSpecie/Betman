@@ -13,5 +13,10 @@
 
 
     <string name="notSubText">Για να δείτε τους VIP αγώνες πρέπει να γίνεται VIP μέλοι \n Πατήστε το παρακάτω κουμπάκι να κάνετε εγγραφή</string>
+    <string name="my_own_title">Rate this app</string>
+    <string name="my_own_message">Please rate the app</string>
+    <string name="my_own_rate">Sure</string>
+    <string name="my_own_thanks">No, thanks</string>
+    <string name="my_own_cancel">Remind me later</string>
 
 </resources>

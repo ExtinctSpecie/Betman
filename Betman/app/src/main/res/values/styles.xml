@@ -16,8 +16,9 @@
     <style name="MainActivityTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="colorPrimary">@color/deepPurplePrimary</item>
         <item name="colorPrimaryDark">@color/deepPurplePrimaryDark</item>
-        <item name="colorAccent">@color/deepPurpleColorAccent</item>
+        <item name="colorAccent">#00397F</item>
     </style>
+
 
 
 </resources>
