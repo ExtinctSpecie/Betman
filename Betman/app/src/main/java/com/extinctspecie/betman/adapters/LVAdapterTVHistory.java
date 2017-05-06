@@ -117,6 +117,7 @@ public class LVAdapterTVHistory extends BaseAdapter
         }
 
 
+
 //        viewHolder.tvTime.setText(item.getTimeOfGame().substring(11,16));
 
         return view;
