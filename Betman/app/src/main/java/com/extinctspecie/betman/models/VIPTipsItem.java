@@ -1,22 +1,18 @@
 package com.extinctspecie.betman.models;
 
 /**
- * Created by WorkSpace on 5/2/2017.
+ * Created by WorkSpace on 5/6/2017.
  */
 
-public class TodayItem
+public class VIPTipsItem
 {
-
     private String teamOne;
     private String teamTwo;
     private String odd;
     private String prediction;
-    private String timeOfGame;
+    private String time;
 
-    //empty constructor
-    public TodayItem()
-    {
-
+    public VIPTipsItem() {
     }
 
     public String getTeamOne() {
@@ -51,13 +47,11 @@ public class TodayItem
         this.prediction = prediction;
     }
 
-    public String getTimeOfGame() {
-        return timeOfGame;
+    public String getTime() {
+        return time;
     }
 
-    public void setTimeOfGame(String timeOfGame) {
-        this.timeOfGame = timeOfGame;
+    public void setTime(String time) {
+        this.time = time;
     }
-
-
 }

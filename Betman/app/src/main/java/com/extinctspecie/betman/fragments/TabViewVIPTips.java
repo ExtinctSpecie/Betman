@@ -9,7 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.extinctspecie.betman.adapters.LVAdapterTVBookmarked;
+import com.extinctspecie.betman.adapters.LVAdapterTVVIPTips;
 import com.extinctspecie.betman.R;
 
 /**
@@ -21,7 +21,7 @@ public class TabViewVIPTips extends Fragment
     private TextView tvVs;
     private String TAG = this.getClass().getSimpleName();
     private ListView listView;
-    private static LVAdapterTVBookmarked lvAdapterTVBookmarked;
+    private static LVAdapterTVVIPTips lvAdapterTVVIPTips;
 
     //on destroy method will return to onCreateView instead of onCreate
     @Nullable
@@ -32,9 +32,9 @@ public class TabViewVIPTips extends Fragment
 
         listView = (ListView) view.findViewById(R.id.lvTVBookmarked);
 
-        lvAdapterTVBookmarked = new LVAdapterTVBookmarked();
+        lvAdapterTVVIPTips = new LVAdapterTVVIPTips();
 
-        listView.setAdapter(lvAdapterTVBookmarked);
+        listView.setAdapter(lvAdapterTVVIPTips);
         //populateListView(tabVipView);
 
         return view;

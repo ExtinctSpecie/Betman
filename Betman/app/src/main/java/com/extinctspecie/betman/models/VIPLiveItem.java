@@ -1,20 +1,19 @@
 package com.extinctspecie.betman.models;
 
 /**
- * Created by WorkSpace on 5/2/2017.
+ * Created by WorkSpace on 5/6/2017.
  */
 
-public class TodayItem
+public class VIPLiveItem
 {
-
     private String teamOne;
     private String teamTwo;
     private String odd;
     private String prediction;
-    private String timeOfGame;
 
-    //empty constructor
-    public TodayItem()
+
+    //Empty constructor
+    public VIPLiveItem()
     {
 
     }
@@ -50,14 +49,4 @@ public class TodayItem
     public void setPrediction(String prediction) {
         this.prediction = prediction;
     }
-
-    public String getTimeOfGame() {
-        return timeOfGame;
-    }
-
-    public void setTimeOfGame(String timeOfGame) {
-        this.timeOfGame = timeOfGame;
-    }
-
-
 }
