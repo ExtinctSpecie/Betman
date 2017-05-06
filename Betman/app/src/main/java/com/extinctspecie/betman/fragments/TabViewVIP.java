@@ -112,7 +112,6 @@ public class TabViewVIP extends Fragment implements RewardedVideoAdListener
         if(!rewardedVideoAd.isLoaded())
         {
             rewardedVideoAd.loadAd("ca-app-pub-5589078228018183/9750162554",new AdRequest.Builder().build());
-            Log.v(TAG,"ad was loaded");
         }
 
     }
@@ -167,7 +166,7 @@ public class TabViewVIP extends Fragment implements RewardedVideoAdListener
 
     @Override
     public void onRewardedVideoAdLoaded() {
-
+        Log.v(TAG,"Ad was loaded");
     }
 
     @Override

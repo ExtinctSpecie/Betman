@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
                 viewPagerTab = (SmartTabLayout) findViewById(R.id.tabsLayout);
                 viewPagerTab.setViewPager(viewPager);
             } else {
-                
+
                 setContentView(R.layout.activity_main_no_internet);
                 noInternetConnectionPopup();
             }

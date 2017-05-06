@@ -19,11 +19,6 @@
             />
 
     </android.support.v4.widget.SwipeRefreshLayout>
-<TextView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_centerInParent="true"
-    android:text="HELLO HISTORY"/>
     <LinearLayout
         android:id="@+id/tvHistoryLoadingProgress"
         android:layout_width="fill_parent"
