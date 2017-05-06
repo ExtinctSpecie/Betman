@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.extinctspecie.betman.adapters.TabViewAdapter;
 import com.extinctspecie.betman.helpers.Fonts;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
+import com.onesignal.OneSignal;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -26,6 +27,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        OneSignal.startInit(this)
+                .inFocusDisplaying(OneSignal.OSInFocusDisplayOption.Notification)
+                .unsubscribeWhenNotificationsAreDisabled(true)
+                .init();
         setContentView(R.layout.activity_main);
         initializeCustomFonts();
 

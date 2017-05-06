@@ -2,9 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.1"
+    buildToolsVersion "25.0.2"
     defaultConfig {
         applicationId "com.extinctspecie.betman"
+        manifestPlaceholders = [onesignal_app_id: "d58187b6-68f7-445a-9636-f5de05c12906",
+                                // Project number pulled from dashboard, local value is ignored.
+                                onesignal_google_project_number: "950168759880"]
         minSdkVersion 19
         targetSdkVersion 25
         versionCode 1
@@ -20,6 +23,9 @@ android {
 }
 
 dependencies {
+    compile 'com.onesignal:OneSignal:3.+@aar'
+    // Required for OneSignal, even if you have added FCM.
+    compile 'com.google.android.gms:play-services-gcm:+'
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -29,7 +35,7 @@ dependencies {
         compile 'com.squareup.retrofit2:retrofit:2.2.0'
         compile 'com.squareup.retrofit2:converter-gson:2.2.0'
         compile 'com.jakewharton:butterknife:8.5.1'
-        compile 'com.google.android.gms:play-services-ads:10.0.1'
+        compile 'com.google.android.gms:play-services-ads:10.2.1'
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support:design:25.3.1'
