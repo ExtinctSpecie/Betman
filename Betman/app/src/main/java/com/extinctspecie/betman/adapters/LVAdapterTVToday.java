@@ -198,8 +198,6 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
-        adWasShown = true;
-
-        notifyDataSetChanged();
+        loadAd();
     }
 }
