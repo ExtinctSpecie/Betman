@@ -47,7 +47,6 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
         this.layoutInflater = LayoutInflater.from(context);
         adView = layoutInflater.inflate(R.layout.lv_item_ad_display, null);
         btnShowad = (Button) adView.findViewById(R.id.btnShowAd);
-
         loadAd();
     }
 
@@ -76,7 +75,11 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
             //view = adView;
 
             if(!rewardedVideoAd.isLoaded())
+            {
                 adView.setVisibility(View.INVISIBLE);
+                loadAd();
+            }
+
 
             Log.v(TAG,"ad view is set up");
 
@@ -181,6 +184,8 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     @Override
     public void onRewardedVideoAdClosed() {
+
+        adView.setVisibility(View.INVISIBLE);
         loadAd();
     }
 
