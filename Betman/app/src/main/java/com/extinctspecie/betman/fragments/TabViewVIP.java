@@ -28,7 +28,7 @@ import com.ogaclejapan.smarttablayout.SmartTabLayout;
  * Created by WorkSpace on 5/1/2017.
  */
 
-public class TabViewVIP extends Fragment implements RewardedVideoAdListener
+public class TabViewVIP extends Fragment
 {
     private Button btnSub;
     private View tabVipView;
@@ -37,7 +37,7 @@ public class TabViewVIP extends Fragment implements RewardedVideoAdListener
     private IabHelper iabHelper;
     private String base64EncodedPublicKey;
 
-    RewardedVideoAd rewardedVideoAd;
+
 
     @Nullable
     @Override
@@ -65,7 +65,6 @@ public class TabViewVIP extends Fragment implements RewardedVideoAdListener
 
         setupIabHelper();
 
-        loadAd();
         registerSubButton();
 
 
@@ -88,8 +87,7 @@ public class TabViewVIP extends Fragment implements RewardedVideoAdListener
             @Override
             public void onClick(View view)
             {
-                if(rewardedVideoAd.isLoaded())
-                    rewardedVideoAd.show();
+
                 tabVipView.findViewById(R.id.noSubLayout).setVisibility(View.GONE);
 
                 //tabVipView.findViewById(R.id.btnSub).setVisibility(View.GONE);
@@ -102,19 +100,7 @@ public class TabViewVIP extends Fragment implements RewardedVideoAdListener
 
     }
 
-    private void loadAd() {
 
-        rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(getActivity());
-
-        rewardedVideoAd.setRewardedVideoAdListener(this);
-
-
-        if(!rewardedVideoAd.isLoaded())
-        {
-            rewardedVideoAd.loadAd("ca-app-pub-5589078228018183/9750162554",new AdRequest.Builder().build());
-        }
-
-    }
 
     IabHelper.OnIabPurchaseFinishedListener onIabPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
         @Override
@@ -164,38 +150,4 @@ public class TabViewVIP extends Fragment implements RewardedVideoAdListener
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    @Override
-    public void onRewardedVideoAdLoaded() {
-        Log.v(TAG,"Ad was loaded");
-    }
-
-    @Override
-    public void onRewardedVideoAdOpened() {
-
-    }
-
-    @Override
-    public void onRewardedVideoStarted() {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdClosed() {
-
-    }
-
-    @Override
-    public void onRewarded(RewardItem rewardItem) {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdLeftApplication() {
-
-    }
-
-    @Override
-    public void onRewardedVideoAdFailedToLoad(int i) {
-
-    }
 }

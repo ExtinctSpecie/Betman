@@ -16,6 +16,11 @@ import com.extinctspecie.betman.R;
 import com.extinctspecie.betman.helpers.Log;
 import com.extinctspecie.betman.models.TodayItem;
 import com.extinctspecie.betman.services.ITodayService;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.reward.RewardItem;
+import com.google.android.gms.ads.reward.RewardedVideoAd;
+import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 import java.util.List;
 
@@ -27,7 +32,7 @@ import retrofit2.Response;
  * Created by WorkSpace on 5/1/2017.
  */
 
-public class TabViewToday extends Fragment {
+public class TabViewToday extends Fragment implements RewardedVideoAdListener {
 
     private TextView tvVs;
     private String TAG = this.getClass().getSimpleName();
@@ -35,10 +40,12 @@ public class TabViewToday extends Fragment {
     private ListView listView;
     private LVAdapterTVToday lvAdapterTVToday;
     private SwipeRefreshLayout swipeRefreshLayout;
-
+    RewardedVideoAd rewardedVideoAd;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        loadAd();
 
         View view = inflater.inflate(R.layout.tab_view_today, container, false);
 
@@ -91,6 +98,54 @@ public class TabViewToday extends Fragment {
                 tvTodayProgress.setVisibility(View.GONE);
             }
         });
+
+    }
+    private void loadAd() {
+
+        rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(getActivity());
+
+        rewardedVideoAd.setRewardedVideoAdListener(this);
+
+
+        if(!rewardedVideoAd.isLoaded())
+        {
+            rewardedVideoAd.loadAd("ca-app-pub-5589078228018183/9750162554",new AdRequest.Builder().build());
+        }
+
+    }
+    @Override
+    public void onRewardedVideoAdLoaded() {
+        Log.v(TAG,"Ad was loaded");
+        rewardedVideoAd.show();
+    }
+
+    @Override
+    public void onRewardedVideoAdOpened() {
+
+    }
+
+    @Override
+    public void onRewardedVideoStarted() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdClosed() {
+
+    }
+
+    @Override
+    public void onRewarded(RewardItem rewardItem) {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdLeftApplication() {
+
+    }
+
+    @Override
+    public void onRewardedVideoAdFailedToLoad(int i) {
 
     }
 

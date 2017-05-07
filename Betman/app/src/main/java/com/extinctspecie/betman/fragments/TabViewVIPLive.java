@@ -29,8 +29,7 @@ import retrofit2.Response;
  * Created by WorkSpace on 5/1/2017.
  */
 
-public class TabViewVIPLive extends Fragment
-{
+public class TabViewVIPLive extends Fragment {
     private TextView tvVs;
     private String TAG = this.getClass().getSimpleName();
     private ListView listView;
@@ -41,11 +40,10 @@ public class TabViewVIPLive extends Fragment
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.tab_view_vip_live,container,false);
+        View view = inflater.inflate(R.layout.tab_view_vip_live, container, false);
 
         listView = (ListView) view.findViewById(R.id.lvTVVIPLive);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.tvVIPLiveSwipeRefresh);
-
 
 
         listView.setAdapter(lvAdapterTVVIPLive);
@@ -57,8 +55,7 @@ public class TabViewVIPLive extends Fragment
         return view;
     }
 
-    private void registerRefreshListener()
-    {
+    private void registerRefreshListener() {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -68,8 +65,8 @@ public class TabViewVIPLive extends Fragment
             }
         });
     }
-    private void populateListView(View view)
-    {
+
+    private void populateListView(View view) {
         final LinearLayout tvTodayProgress = (LinearLayout) view.findViewById(R.id.tvVIPLiveLoadingProgress);
 
         tvTodayProgress.setVisibility(View.VISIBLE);
@@ -80,9 +77,8 @@ public class TabViewVIPLive extends Fragment
             public void onResponse(Call<List<VIPLiveItem>> call, Response<List<VIPLiveItem>> response) {
                 vipLiveItems = response.body();
 
-                if(vipLiveItems.size() > 0)
-                {
-                    lvAdapterTVVIPLive = new LVAdapterTVVIPLive(getActivity().getBaseContext(),vipLiveItems);
+                if (vipLiveItems.size() > 0) {
+                    lvAdapterTVVIPLive = new LVAdapterTVVIPLive(getActivity().getBaseContext(), vipLiveItems);
                     //set adapter
                     listView.setAdapter(lvAdapterTVVIPLive);
                 }
