@@ -35,7 +35,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     private TodayItem item;
     private boolean adWasShown;
     private RewardedVideoAd rewardedVideoAd;
-    private Button btnShowad;
+     private Button btnShowad;
 
     public LVAdapterTVToday(Context context, List<TodayItem> todayItems) {
 
@@ -146,6 +146,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     public void onRewardedVideoAdLoaded() {
         Log.v(TAG, "Ad was loaded");
 
+        if(btnShowad != null)
         btnShowad.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -166,7 +167,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     @Override
     public void onRewardedVideoAdClosed() {
-
+        loadAd();
     }
 
     @Override
@@ -183,6 +184,8 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
+        adWasShown = true;
 
+        notifyDataSetChanged();
     }
 }
