@@ -10,4 +10,5 @@
     <color name="tabActive">#505050</color>
     <color name="tabInactive">#600050</color>
     <color name="historyWonGreen">#69F0AE</color>
+    <color name="lvItemVipLiveBackground">#03a9f4</color>
 </resources>

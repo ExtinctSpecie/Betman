@@ -14,7 +14,7 @@
         android:foreground="?android:attr/selectableItemBackground"
         android:padding="10dp"
         app:cardCornerRadius="4dp"
-        app:cardBackgroundColor="#ffd700">
+        app:cardBackgroundColor="@color/lvItemVipLiveBackground">
 
         <LinearLayout
             android:layout_width="match_parent"

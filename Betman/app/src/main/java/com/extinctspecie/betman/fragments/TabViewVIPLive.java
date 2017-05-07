@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class TabViewVIPLive extends Fragment
     private ListView listView;
     private LVAdapterTVVIPLive lvAdapterTVVIPLive;
     private List<VIPLiveItem> vipLiveItems;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     @Nullable
     @Override
@@ -42,16 +44,30 @@ public class TabViewVIPLive extends Fragment
         View view = inflater.inflate(R.layout.tab_view_vip_live,container,false);
 
         listView = (ListView) view.findViewById(R.id.lvTVVIPLive);
-
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.tvVIPLiveSwipeRefresh);
 
 
 
         listView.setAdapter(lvAdapterTVVIPLive);
-        //populateListView(tabVipView);
+
         populateListView(view);
+
+        registerRefreshListener();
+
         return view;
     }
 
+    private void registerRefreshListener()
+    {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.v(TAG, "Refresh was triggered");
+                populateListView(getView());
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
     private void populateListView(View view)
     {
         final LinearLayout tvTodayProgress = (LinearLayout) view.findViewById(R.id.tvVIPLiveLoadingProgress);

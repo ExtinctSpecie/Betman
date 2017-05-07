@@ -2,6 +2,10 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/tvVIPLiveSwipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ListView
         android:id="@+id/lvTVVIPLive"
         android:layout_width="match_parent"
@@ -11,6 +15,8 @@
         android:background="@color/deepPurplePrimaryDark"
         android:divider="@null"
         android:dividerHeight="0dp"/>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
     <LinearLayout
         android:id="@+id/tvVIPLiveLoadingProgress"
         android:layout_width="fill_parent"

@@ -3,6 +3,7 @@ package com.extinctspecie.betman.fragments;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class TabViewVIPTips extends Fragment
     private ListView listView;
     private LVAdapterTVVIPTips lvAdapterTVVIPTips;
     private List<VIPTipsItem> vipTipsItems;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     //on destroy method will return to onCreateView instead of onCreate
     @Nullable
@@ -46,14 +48,28 @@ public class TabViewVIPTips extends Fragment
 
         listView = (ListView) view.findViewById(R.id.lvTVVIPTips);
 
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.tvVIPTipsSwipeRefresh);
 
 
         listView.setAdapter(lvAdapterTVVIPTips);
-        //populateListView(tabVipView);
+
         populateListView(view);
+
+        registerRefreshListener();
+
         return view;
     }
-
+    private void registerRefreshListener()
+    {
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Log.v(TAG, "Refresh was triggered");
+                populateListView(getView());
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
+    }
     private void populateListView(View view)
     {
         final LinearLayout tvTodayProgress = (LinearLayout) view.findViewById(R.id.tvVIPTipsLoadingProgress);

@@ -3,7 +3,10 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/tvVIPTipsSwipeRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <ListView
         android:id="@+id/lvTVVIPTips"
         android:layout_width="match_parent"
@@ -13,6 +16,7 @@
         android:background="@color/deepPurplePrimaryDark"
         android:divider="@null"
         android:dividerHeight="0dp"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
     <LinearLayout
         android:id="@+id/tvVIPTipsLoadingProgress"
         android:layout_width="fill_parent"
