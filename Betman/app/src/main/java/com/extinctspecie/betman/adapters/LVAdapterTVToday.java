@@ -35,14 +35,19 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     private TodayItem item;
     private boolean adWasShown;
     private RewardedVideoAd rewardedVideoAd;
-     private Button btnShowad;
+    private Button btnShowad;
+    private View adView ;
 
     public LVAdapterTVToday(Context context, List<TodayItem> todayItems) {
 
+        Log.v(TAG,"constructor called");
         this.adWasShown = false;
         this.todayItems = todayItems;
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
+        adView = layoutInflater.inflate(R.layout.lv_item_ad_display, null);
+        btnShowad = (Button) adView.findViewById(R.id.btnShowAd);
+
         loadAd();
     }
 
@@ -64,9 +69,19 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
+
+
         if ((position == todayItems.size() - 1) && !adWasShown) {
-            view = layoutInflater.inflate(R.layout.lv_item_ad_display, null);
-            btnShowad = (Button) view.findViewById(R.id.btnShowAd);
+
+            //view = adView;
+
+            if(!rewardedVideoAd.isLoaded())
+                adView.setVisibility(View.INVISIBLE);
+
+            Log.v(TAG,"ad view is set up");
+
+            return adView;
+
 
         } else {
             final ViewHolder viewHolder;
@@ -115,10 +130,9 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
             viewHolder.tvTime.setText(item.getTimeOfGame().substring(11, 16));
 
-
+            return view;
         }
 
-        return view;
     }
 
     static class ViewHolder {
@@ -145,7 +159,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     @Override
     public void onRewardedVideoAdLoaded() {
         Log.v(TAG, "Ad was loaded");
-
+        adView.setVisibility(View.VISIBLE);
         if(btnShowad != null)
         btnShowad.setOnClickListener(new View.OnClickListener() {
             @Override
