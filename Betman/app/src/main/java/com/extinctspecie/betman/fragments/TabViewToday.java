@@ -85,9 +85,18 @@ public class TabViewToday extends Fragment  {
 
                 if(todayItems.size() > 0)
                 {
-                    lvAdapterTVToday = new LVAdapterTVToday(getActivity().getBaseContext(), todayItems);
-                    //set adapter
-                    listView.setAdapter(lvAdapterTVToday);
+                    if(lvAdapterTVToday == null)
+                    {
+                        lvAdapterTVToday = new LVAdapterTVToday(getActivity().getBaseContext(), todayItems);
+                        //set adapter
+                        listView.setAdapter(lvAdapterTVToday);
+                    }
+                    else
+                    {
+                        lvAdapterTVToday.updateData(todayItems);
+                        lvAdapterTVToday.notifyDataSetChanged();
+                    }
+
                 }
 
                 //dismiss loading circle

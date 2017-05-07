@@ -33,7 +33,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     private List<TodayItem> todayItems;
     private LayoutInflater layoutInflater;
     private TodayItem item;
-    private boolean adWasShown;
+    private static boolean adWasShown;
     private RewardedVideoAd rewardedVideoAd;
     private Button btnShowad;
     private View adView ;
@@ -41,7 +41,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     public LVAdapterTVToday(Context context, List<TodayItem> todayItems) {
 
         Log.v(TAG,"constructor called");
-        this.adWasShown = false;
+        adWasShown = false;
         this.todayItems = todayItems;
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
@@ -76,7 +76,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
             if(!rewardedVideoAd.isLoaded())
             {
-                adView.setVisibility(View.INVISIBLE);
+                adView.setVisibility(View.GONE);
                 loadAd();
             }
 
@@ -146,6 +146,10 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
         TextView tvOdd;
     }
 
+    public void updateData(List<TodayItem> newTodayItems)
+    {
+        todayItems = newTodayItems;
+    }
     private void loadAd() {
 
         rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(context);
@@ -185,7 +189,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     @Override
     public void onRewardedVideoAdClosed() {
 
-        adView.setVisibility(View.INVISIBLE);
+        adView.setVisibility(View.GONE);
         loadAd();
     }
 
