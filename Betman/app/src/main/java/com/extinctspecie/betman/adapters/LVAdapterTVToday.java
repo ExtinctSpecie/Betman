@@ -34,7 +34,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     private List<TodayItem> todayItems;
     private LayoutInflater layoutInflater;
     private TodayItem item;
-    private boolean adWasShown;
+
     private RewardedVideoAd rewardedVideoAd;
     private Button btnShowad;
     private View adView;
@@ -42,7 +42,6 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     public LVAdapterTVToday(Context context, List<TodayItem> todayItems) {
 
         Log.v(TAG, "constructor called");
-        adWasShown = Information.isAdShown();
         this.todayItems = todayItems;
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
@@ -71,7 +70,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     public View getView(int position, View view, ViewGroup viewGroup) {
 
 
-        if ((position == todayItems.size() - 1) && !adWasShown) {
+        if ((position == todayItems.size() - 1) && !Information.isAdShown()) {
 
             //view = adView;
 
@@ -90,7 +89,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
             final ViewHolder viewHolder;
 
 
-            if (view == null || adWasShown) {
+            if (view == null || Information.isAdShown()) {
                 TextView tvTemp;
                 viewHolder = new ViewHolder();
                 view = layoutInflater.inflate(R.layout.lv_adapter_tv_today, null);
@@ -182,13 +181,14 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     @Override
     public void onRewardedVideoAdClosed() {
 
-        adView.setVisibility(View.GONE);
-        loadAd();
     }
 
     @Override
     public void onRewarded(RewardItem rewardItem) {
+
+        Log.v(TAG, "Ad reward");
         Information.setAdShown(true);
+        Log.v(TAG,String.valueOf(Information.isAdShown()));
 
         notifyDataSetChanged();
     }

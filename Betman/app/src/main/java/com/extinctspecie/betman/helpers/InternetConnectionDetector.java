@@ -22,7 +22,7 @@ public class InternetConnectionDetector {
                 HttpURLConnection urlc = (HttpURLConnection) (new URL("http://www.google.com").openConnection());
                 urlc.setRequestProperty("User-Agent", "Test");
                 urlc.setRequestProperty("Connection", "close");
-                urlc.setConnectTimeout(500);
+                urlc.setConnectTimeout(1500);
                 urlc.connect();
                 return (urlc.getResponseCode() == 200);
             } catch (IOException e) {
