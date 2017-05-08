@@ -115,10 +115,7 @@ public class LVAdapterTVHistory extends BaseAdapter
         if (item.getResult().equals("true")){
             viewHolder.llHistoryItem.setBackgroundColor((context.getResources().getColor(R.color.historyWonGreen)));
         }
-
-
-
-//        viewHolder.tvTime.setText(item.getTimeOfGame().substring(11,16));
+        
 
         return view;
     }

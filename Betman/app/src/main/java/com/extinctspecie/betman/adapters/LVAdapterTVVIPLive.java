@@ -99,6 +99,8 @@ public class LVAdapterTVVIPLive extends BaseAdapter
 
 
 
+        if(i % 2 == 1)
+            view.setAlpha(0.8f);
 
         return view;
     }

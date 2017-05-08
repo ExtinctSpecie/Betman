@@ -134,7 +134,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
             viewHolder.tvTime.setText(item.getTimeOfGame().substring(11, 16));
 
             if(position % 2 == 1)
-                view.setAlpha(0.7f);
+                view.setAlpha(0.8f);
 
             return view;
         }
