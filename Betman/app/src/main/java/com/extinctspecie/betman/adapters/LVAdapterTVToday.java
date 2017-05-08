@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.extinctspecie.betman.R;
@@ -75,7 +76,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
             //view = adView;
 
             if (!rewardedVideoAd.isLoaded()) {
-                adView.setVisibility(View.GONE);
+
                 loadAd();
             }
 
@@ -132,6 +133,9 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
             viewHolder.tvTime.setText(item.getTimeOfGame().substring(11, 16));
 
+            if(position % 2 == 1)
+                view.setAlpha(0.7f);
+
             return view;
         }
 
@@ -158,7 +162,11 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     @Override
     public void onRewardedVideoAdLoaded() {
         Log.v(TAG, "Ad was loaded");
-        adView.setVisibility(View.VISIBLE);
+        //adView.setVisibility(View.VISIBLE);
+        adView.findViewById(R.id.btnShowAd).setVisibility(View.VISIBLE);
+        adView.findViewById(R.id.adLoadingProgress).setVisibility(View.GONE);
+        adView.findViewById(R.id.adLoadingButton).setVisibility(View.GONE);
+
         if (btnShowad != null)
             btnShowad.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -180,7 +188,10 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     @Override
     public void onRewardedVideoAdClosed() {
-
+        adView.findViewById(R.id.btnShowAd).setVisibility(View.GONE);
+        adView.findViewById(R.id.adLoadingProgress).setVisibility(View.VISIBLE);
+        adView.findViewById(R.id.adLoadingButton).setVisibility(View.VISIBLE);
+        notifyDataSetChanged();
     }
 
     @Override
