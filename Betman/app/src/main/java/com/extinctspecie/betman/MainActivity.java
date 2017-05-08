@@ -57,6 +57,7 @@ public class MainActivity extends AppCompatActivity {
                 setContentView(R.layout.activity_main);
                 showRateDialog();
 
+
                 initializeCustomFonts();
 
                 tabViewAdapter = new TabViewAdapter(getSupportFragmentManager(), getApplicationContext());
@@ -66,6 +67,11 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setOffscreenPageLimit(3);
                 viewPagerTab = (SmartTabLayout) findViewById(R.id.tabsLayout);
                 viewPagerTab.setViewPager(viewPager);
+
+
+               // savedInstanceState.putParcelable("TabAdapter",tabViewAdapter);
+
+
             } else {
 
                 setContentView(R.layout.activity_main_no_internet);

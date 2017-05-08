@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.extinctspecie.betman.R;
 import com.extinctspecie.betman.helpers.Fonts;
+import com.extinctspecie.betman.helpers.Information;
 import com.extinctspecie.betman.helpers.Log;
 import com.extinctspecie.betman.models.TodayItem;
 import com.google.android.gms.ads.AdRequest;
@@ -33,15 +34,15 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     private List<TodayItem> todayItems;
     private LayoutInflater layoutInflater;
     private TodayItem item;
-    private static boolean adWasShown;
+    private boolean adWasShown;
     private RewardedVideoAd rewardedVideoAd;
     private Button btnShowad;
-    private View adView ;
+    private View adView;
 
     public LVAdapterTVToday(Context context, List<TodayItem> todayItems) {
 
-        Log.v(TAG,"constructor called");
-        adWasShown = false;
+        Log.v(TAG, "constructor called");
+        adWasShown = Information.isAdShown();
         this.todayItems = todayItems;
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
@@ -74,14 +75,13 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
             //view = adView;
 
-            if(!rewardedVideoAd.isLoaded())
-            {
+            if (!rewardedVideoAd.isLoaded()) {
                 adView.setVisibility(View.GONE);
                 loadAd();
             }
 
 
-            Log.v(TAG,"ad view is set up");
+            Log.v(TAG, "ad view is set up");
 
             return adView;
 
@@ -138,18 +138,11 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     }
 
-    static class ViewHolder {
-        TextView tvTeamOne;
-        TextView tvTeamTwo;
-        TextView tvTime;
-        TextView tvPrediction;
-        TextView tvOdd;
-    }
 
-    public void updateData(List<TodayItem> newTodayItems)
-    {
+    public void updateData(List<TodayItem> newTodayItems) {
         todayItems = newTodayItems;
     }
+
     private void loadAd() {
 
         rewardedVideoAd = MobileAds.getRewardedVideoAdInstance(context);
@@ -167,13 +160,13 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     public void onRewardedVideoAdLoaded() {
         Log.v(TAG, "Ad was loaded");
         adView.setVisibility(View.VISIBLE);
-        if(btnShowad != null)
-        btnShowad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rewardedVideoAd.show();
-            }
-        });
+        if (btnShowad != null)
+            btnShowad.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    rewardedVideoAd.show();
+                }
+            });
     }
 
     @Override
@@ -195,7 +188,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     @Override
     public void onRewarded(RewardItem rewardItem) {
-        adWasShown = true;
+        Information.setAdShown(true);
 
         notifyDataSetChanged();
     }
@@ -208,5 +201,13 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     @Override
     public void onRewardedVideoAdFailedToLoad(int i) {
         loadAd();
+    }
+
+    static class ViewHolder {
+        TextView tvTeamOne;
+        TextView tvTeamTwo;
+        TextView tvTime;
+        TextView tvPrediction;
+        TextView tvOdd;
     }
 }
