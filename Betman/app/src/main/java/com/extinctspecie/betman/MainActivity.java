@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 
+import com.crashlytics.android.Crashlytics;
 import com.extinctspecie.betman.adapters.TabViewAdapter;
 import com.extinctspecie.betman.helpers.Fonts;
 import com.extinctspecie.betman.helpers.InternetConnectionDetector;
@@ -25,6 +26,7 @@ import com.kobakei.ratethisapp.RateThisApp;
 import com.ogaclejapan.smarttablayout.SmartTabLayout;
 import com.onesignal.OneSignal;
 
+import io.fabric.sdk.android.Fabric;
 import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
         Log.v(TAG,"main activity on create method called");
         int SDK_INT = android.os.Build.VERSION.SDK_INT;
         if (SDK_INT > 8) {
