@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.extinctspecie.betman.R;
 import com.extinctspecie.betman.helpers.Fonts;
 import com.extinctspecie.betman.models.TodayItem;
+import com.extinctspecie.betman.models.VIPLiveItem;
 import com.extinctspecie.betman.models.VIPTipsItem;
 
 import java.util.ArrayList;
@@ -116,5 +117,9 @@ public class LVAdapterTVVIPTips extends BaseAdapter
         TextView tvTime;
         TextView tvPrediction;
         TextView tvOdd;
+    }
+    public void updateData(List<VIPTipsItem> newTodayItems) {
+        vipTipsItems = newTodayItems;
+        notifyDataSetChanged();
     }
 }

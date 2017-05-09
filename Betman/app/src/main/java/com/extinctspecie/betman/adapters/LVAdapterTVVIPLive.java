@@ -111,4 +111,8 @@ public class LVAdapterTVVIPLive extends BaseAdapter
         TextView tvPrediction;
         TextView tvOdd;
     }
+    public void updateData(List<VIPLiveItem> newTodayItems) {
+        vipLiveItems = newTodayItems;
+        notifyDataSetChanged();
+    }
 }

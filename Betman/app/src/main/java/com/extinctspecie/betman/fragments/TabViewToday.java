@@ -32,9 +32,8 @@ import retrofit2.Response;
  * Created by WorkSpace on 5/1/2017.
  */
 
-public class TabViewToday extends Fragment  {
+public class TabViewToday extends Fragment {
 
-    private TextView tvVs;
     private String TAG = this.getClass().getSimpleName();
     private List<TodayItem> todayItems;
     private ListView listView;
@@ -46,8 +45,7 @@ public class TabViewToday extends Fragment  {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-
-        Log.v(TAG,"oncreateview called today tab");
+        Log.v(TAG, "oncreateview called today tab");
 
 
         View view = inflater.inflate(R.layout.tab_view_today, container, false);
@@ -83,23 +81,17 @@ public class TabViewToday extends Fragment  {
             public void onResponse(Call<List<TodayItem>> call, Response<List<TodayItem>> response) {
                 todayItems = response.body();
 
-                if(todayItems.size() > 0)
-                {
-                    if(lvAdapterTVToday == null)
-                    {
-                        lvAdapterTVToday = new LVAdapterTVToday(getActivity().getBaseContext(), todayItems);
-                        //set adapter
-                        listView.setAdapter(lvAdapterTVToday);
-                    }
-                    else
-                    {
-                        lvAdapterTVToday.updateData(todayItems);
-                        lvAdapterTVToday.notifyDataSetChanged();
-                    }
+                if (todayItems.size() > 0) {
 
+                    lvAdapterTVToday = new LVAdapterTVToday(getActivity().getBaseContext(), todayItems);
+                    //set adapter
+                    listView.setAdapter(lvAdapterTVToday);
                 }
-
-                //dismiss loading circle
+                else
+                {
+                    if(lvAdapterTVToday!=null)
+                        lvAdapterTVToday.noItemsAvailable();
+                }
                 tvTodayProgress.setVisibility(View.GONE);
             }
 
@@ -112,7 +104,6 @@ public class TabViewToday extends Fragment  {
         });
 
     }
-
 
 
 }

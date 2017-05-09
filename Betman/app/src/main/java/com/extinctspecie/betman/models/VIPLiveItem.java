@@ -10,7 +10,7 @@ public class VIPLiveItem
     private String teamTwo;
     private String odd;
     private String prediction;
-
+    private String matchType;
 
     //Empty constructor
     public VIPLiveItem()

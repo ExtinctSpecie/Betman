@@ -27,8 +27,7 @@ import retrofit2.Response;
  * Created by WorkSpace on 5/1/2017.
  */
 
-public class TabViewHistory extends Fragment
-{
+public class TabViewHistory extends Fragment {
 
 
     private TextView tvVs;
@@ -43,7 +42,7 @@ public class TabViewHistory extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.tab_view_history,container,false);
+        View view = inflater.inflate(R.layout.tab_view_history, container, false);
         listView = (ListView) view.findViewById(R.id.lvTVHistory);
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.tvHistorySwipeRefresh);
 
@@ -51,11 +50,12 @@ public class TabViewHistory extends Fragment
         registerRefreshListener();
         return view;
     }
+
     private void registerRefreshListener() {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                Log.v(TAG,"Refresh was triggered");
+                Log.v(TAG, "Refresh was triggered");
                 populateListView(getView());
                 swipeRefreshLayout.setRefreshing(false);
             }
@@ -73,20 +73,11 @@ public class TabViewHistory extends Fragment
                 historyItems = response.body();
 
 
-                if(historyItems.size() > 0)
-                {
+                if (historyItems.size() > 0) {
+
                     lvAdapterHistory = new LVAdapterTVHistory(getActivity().getBaseContext(), historyItems);
+                    listView.setAdapter(lvAdapterHistory);
 
-
-                    if(historyItems.size() > 0)
-                    {
-                        lvAdapterHistory = new LVAdapterTVHistory(getActivity().getBaseContext(), historyItems);
-                        //set adapter
-                        listView.setAdapter(lvAdapterHistory);
-                    }
-
-                    //set adapter
-                    //listView.setAdapter(lvAdapterHistory);
                 }
 
                 //dismiss loading circle

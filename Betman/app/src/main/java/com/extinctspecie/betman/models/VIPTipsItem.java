@@ -11,7 +11,8 @@ public class VIPTipsItem
     private String odd;
     private String prediction;
     private String timeOfGame;
-
+    private String matchType;
+    
     public VIPTipsItem() {
     }
 

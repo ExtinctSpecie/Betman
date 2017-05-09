@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.extinctspecie.betman.R;
@@ -49,6 +48,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
         adView = layoutInflater.inflate(R.layout.lv_item_ad_display, null);
         btnShowad = (Button) adView.findViewById(R.id.btnShowAd);
         loadAd();
+
     }
 
 
@@ -77,11 +77,13 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
             if (!rewardedVideoAd.isLoaded()) {
 
-                loadAd();
+            loadAd();
+
             }
 
 
             Log.v(TAG, "ad view is set up");
+
 
             return adView;
 
@@ -122,7 +124,6 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
             item = todayItems.get(position);
 
-
             viewHolder.tvTeamOne.setText(item.getTeamOne());
 
             viewHolder.tvTeamTwo.setText(item.getTeamTwo());
@@ -133,7 +134,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
             viewHolder.tvTime.setText(item.getTimeOfGame().substring(11, 16));
 
-            if(position % 2 == 1)
+            if (position % 2 == 1)
                 view.setAlpha(0.8f);
 
             return view;
@@ -141,9 +142,19 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     }
 
+    public void noItemsAvailable() {
+        adView.findViewById(R.id.adReadyToView).setVisibility(View.GONE);
+        //adView.findViewById(R.id.btnShowAd).setVisibility(View.GONE);
+        adView.setVisibility(View.GONE);
+        todayItems.clear();
+        notifyDataSetChanged();
+
+    }
+
 
     public void updateData(List<TodayItem> newTodayItems) {
         todayItems = newTodayItems;
+
     }
 
     private void loadAd() {
@@ -153,9 +164,9 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
         rewardedVideoAd.setRewardedVideoAdListener(this);
 
 
-        if (!rewardedVideoAd.isLoaded()) {
-            rewardedVideoAd.loadAd("ca-app-pub-5589078228018183/9750162554", new AdRequest.Builder().build());
-        }
+        //if (!rewardedVideoAd.isLoaded()) {
+        rewardedVideoAd.loadAd("ca-app-pub-5589078228018183/9750162554", new AdRequest.Builder().build());
+        //}
 
     }
 
@@ -163,17 +174,20 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     public void onRewardedVideoAdLoaded() {
         Log.v(TAG, "Ad was loaded");
         //adView.setVisibility(View.VISIBLE);
-        adView.findViewById(R.id.btnShowAd).setVisibility(View.VISIBLE);
-        adView.findViewById(R.id.adLoadingProgress).setVisibility(View.GONE);
-        adView.findViewById(R.id.adLoadingButton).setVisibility(View.GONE);
+        adView.findViewById(R.id.adReadyToView).setVisibility(View.VISIBLE);
+        //adView.findViewById(R.id.btnShowAd).setVisibility(View.VISIBLE);
+        adView.findViewById(R.id.relativeLayoutAdView).setVisibility(View.GONE);
+        //adView.findViewById(R.id.adLoadingProgress).setVisibility(View.GONE);
+        //adView.findViewById(R.id.adLoadingButton).setVisibility(View.GONE);
 
-        if (btnShowad != null)
-            btnShowad.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+
+        btnShowad.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (rewardedVideoAd.isLoaded())
                     rewardedVideoAd.show();
-                }
-            });
+            }
+        });
     }
 
     @Override
@@ -188,10 +202,11 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     @Override
     public void onRewardedVideoAdClosed() {
-        adView.findViewById(R.id.btnShowAd).setVisibility(View.GONE);
-        adView.findViewById(R.id.adLoadingProgress).setVisibility(View.VISIBLE);
-        adView.findViewById(R.id.adLoadingButton).setVisibility(View.VISIBLE);
-        notifyDataSetChanged();
+        rewardedVideoAd.destroy(context);
+        //adView.findViewById(R.id.btnShowAd).setVisibility(View.GONE);
+        adView.findViewById(R.id.adReadyToView).setVisibility(View.GONE);
+        adView.findViewById(R.id.relativeLayoutAdView).setVisibility(View.VISIBLE);
+        loadAd();
     }
 
     @Override
@@ -199,7 +214,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
         Log.v(TAG, "Ad reward");
         Information.setAdShown(true);
-        Log.v(TAG,String.valueOf(Information.isAdShown()));
+        Log.v(TAG, String.valueOf(Information.isAdShown()));
 
         notifyDataSetChanged();
     }

@@ -12,6 +12,7 @@ public class TodayItem
     private String odd;
     private String prediction;
     private String timeOfGame;
+    private String matchType;
 
     //empty constructor
     public TodayItem()

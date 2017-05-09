@@ -115,7 +115,7 @@ public class LVAdapterTVHistory extends BaseAdapter
         if (item.getResult().equals("true")){
             viewHolder.llHistoryItem.setBackgroundColor((context.getResources().getColor(R.color.historyWonGreen)));
         }
-        
+
 
         return view;
     }
@@ -130,5 +130,8 @@ public class LVAdapterTVHistory extends BaseAdapter
         TextView tvFinalScore;
         LinearLayout llHistoryItem;
     }
-
+    public void updateData(List<HistoryItem> newTodayItems) {
+        historyItems = newTodayItems;
+        notifyDataSetChanged();
+    }
 }

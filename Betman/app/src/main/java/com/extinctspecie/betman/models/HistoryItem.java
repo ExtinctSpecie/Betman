@@ -14,7 +14,7 @@ public class HistoryItem {
     private String result;
     private String dateOfGame;
     private String timeOfGame;
-
+    private String matchType;
 
     //empty constructor
     public HistoryItem()
