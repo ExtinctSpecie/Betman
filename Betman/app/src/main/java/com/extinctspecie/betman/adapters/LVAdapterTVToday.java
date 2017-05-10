@@ -181,13 +181,14 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
         //adView.findViewById(R.id.adLoadingButton).setVisibility(View.GONE);
 
 
-        btnShowad.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (rewardedVideoAd.isLoaded())
-                    rewardedVideoAd.show();
-            }
-        });
+        if(btnShowad != null)
+            btnShowad.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (rewardedVideoAd.isLoaded())
+                        rewardedVideoAd.show();
+                }
+            });
     }
 
     @Override
@@ -202,11 +203,12 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     @Override
     public void onRewardedVideoAdClosed() {
-        rewardedVideoAd.destroy(context);
+
         //adView.findViewById(R.id.btnShowAd).setVisibility(View.GONE);
+        loadAd();
         adView.findViewById(R.id.adReadyToView).setVisibility(View.GONE);
         adView.findViewById(R.id.relativeLayoutAdView).setVisibility(View.VISIBLE);
-        loadAd();
+
     }
 
     @Override
