@@ -49,4 +49,12 @@ public class VIPLiveItem
     public void setPrediction(String prediction) {
         this.prediction = prediction;
     }
+
+    public String getMatchType() {
+        return matchType;
+    }
+
+    public void setMatchType(String matchType) {
+        this.matchType = matchType;
+    }
 }

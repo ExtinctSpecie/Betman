@@ -16,6 +16,7 @@ public class HistoryItem {
     private String timeOfGame;
     private String matchType;
 
+
     //empty constructor
     public HistoryItem()
     {
@@ -85,4 +86,12 @@ public class HistoryItem {
     public void setTimeOfGame(String timeOfGame) {
         this.timeOfGame = timeOfGame;
     }
+    public String getMatchType() {
+        return matchType;
+    }
+
+    public void setMatchType(String matchType) {
+        this.matchType = matchType;
+    }
+
 }

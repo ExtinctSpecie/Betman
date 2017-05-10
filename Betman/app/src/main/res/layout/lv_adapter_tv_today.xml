@@ -101,10 +101,9 @@
                 android:layout_marginRight="4dp">
 
                 <ImageView
+                    android:id="@+id/lvImgFirstBallTodayTab"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/football_icon"
-                   />
+                    android:layout_height="wrap_content" />
 
                 <TextView
                     android:id="@+id/tvPredictionHelper"
@@ -125,9 +124,9 @@
                     android:text="Prediction" />
 
                 <ImageView
+                    android:id="@+id/lvImgSecondBallTodayTab"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@mipmap/football_icon" />
+                    android:layout_height="wrap_content" />
 
             </LinearLayout>
 

@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.extinctspecie.betman.R;
@@ -77,7 +78,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
             if (!rewardedVideoAd.isLoaded()) {
 
-            loadAd();
+                loadAd();
 
             }
 
@@ -96,6 +97,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
                 TextView tvTemp;
                 viewHolder = new ViewHolder();
                 view = layoutInflater.inflate(R.layout.lv_adapter_tv_today, null);
+
                 viewHolder.tvTeamOne = (TextView) view.findViewById(R.id.tvTeamOne);
                 viewHolder.tvTeamOne.setTypeface(Fonts.getSFDiegoSans());
 
@@ -114,8 +116,8 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
                 viewHolder.tvTime = (TextView) view.findViewById(R.id.tvTime);
                 viewHolder.tvTime.setTypeface(Fonts.getSFDiegoSans());
 
-                //tvTemp = (TextView) view.findViewById(R.id.tvOddSymbol);
-                //tvTemp.setTypeface(Fonts.getSFDiegoSans());
+                viewHolder.imgFirstBall = (ImageView) view.findViewById(R.id.lvImgFirstBallTodayTab);
+                viewHolder.imgSecondBall = (ImageView) view.findViewById(R.id.lvImgSecondBallTodayTab);
 
                 view.setTag(viewHolder);
             } else {
@@ -134,6 +136,17 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
             viewHolder.tvTime.setText(item.getTimeOfGame().substring(11, 16));
 
+            if(item.getMatchType().equals("Football"))
+            {
+                viewHolder.imgFirstBall.setImageResource(R.mipmap.football_icon);
+                viewHolder.imgSecondBall.setImageResource(R.mipmap.football_icon);
+            }
+            else
+            {
+                viewHolder.imgFirstBall.setImageResource(R.mipmap.basketball_icon);
+                viewHolder.imgSecondBall.setImageResource(R.mipmap.basketball_icon);
+            }
+
             if (position % 2 == 1)
                 view.setAlpha(0.8f);
 
@@ -144,7 +157,6 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
     public void noItemsAvailable() {
         adView.findViewById(R.id.adReadyToView).setVisibility(View.GONE);
-        //adView.findViewById(R.id.btnShowAd).setVisibility(View.GONE);
         adView.setVisibility(View.GONE);
         todayItems.clear();
         notifyDataSetChanged();
@@ -163,25 +175,20 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
         rewardedVideoAd.setRewardedVideoAdListener(this);
 
-
-        //if (!rewardedVideoAd.isLoaded()) {
         rewardedVideoAd.loadAd("ca-app-pub-5589078228018183/9750162554", new AdRequest.Builder().build());
-        //}
 
     }
 
     @Override
     public void onRewardedVideoAdLoaded() {
+
         Log.v(TAG, "Ad was loaded");
-        //adView.setVisibility(View.VISIBLE);
+
         adView.findViewById(R.id.adReadyToView).setVisibility(View.VISIBLE);
-        //adView.findViewById(R.id.btnShowAd).setVisibility(View.VISIBLE);
+
         adView.findViewById(R.id.relativeLayoutAdView).setVisibility(View.GONE);
-        //adView.findViewById(R.id.adLoadingProgress).setVisibility(View.GONE);
-        //adView.findViewById(R.id.adLoadingButton).setVisibility(View.GONE);
 
-
-        if(btnShowad != null)
+        if (btnShowad != null)
             btnShowad.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -237,5 +244,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
         TextView tvTime;
         TextView tvPrediction;
         TextView tvOdd;
+        ImageView imgFirstBall;
+        ImageView imgSecondBall;
     }
 }

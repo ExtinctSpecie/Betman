@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -89,6 +90,9 @@ public class LVAdapterTVHistory extends BaseAdapter
             //tvTemp = (TextView) view.findViewById(R.id.tvOddSymbol);
             //tvTemp.setTypeface(Fonts.getSFDiegoSans());
 
+            viewHolder.imgFirstBall = (ImageView) view.findViewById(R.id.lvImgFirstBallHistoryTab);
+            viewHolder.imgSecondBall = (ImageView) view.findViewById(R.id.lvImgSecondBallHistoryTab);
+
             view.setTag(viewHolder);
         }
         else
@@ -112,6 +116,18 @@ public class LVAdapterTVHistory extends BaseAdapter
 
         viewHolder.tvFinalScore.setText(item.getFinalScore());
 
+        if(item.getMatchType().equals("Football"))
+        {
+            viewHolder.imgFirstBall.setImageResource(R.mipmap.football_icon);
+            viewHolder.imgSecondBall.setImageResource(R.mipmap.football_icon);
+        }
+        else
+        {
+            viewHolder.imgFirstBall.setImageResource(R.mipmap.basketball_icon);
+            viewHolder.imgSecondBall.setImageResource(R.mipmap.basketball_icon);
+        }
+
+
         if (item.getResult().equals("true")){
             viewHolder.llHistoryItem.setBackgroundColor((context.getResources().getColor(R.color.historyWonGreen)));
         }
@@ -128,6 +144,8 @@ public class LVAdapterTVHistory extends BaseAdapter
         TextView tvOdd;
         TextView tvDate;
         TextView tvFinalScore;
+        ImageView imgFirstBall;
+        ImageView imgSecondBall;
         LinearLayout llHistoryItem;
     }
     public void updateData(List<HistoryItem> newTodayItems) {

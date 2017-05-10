@@ -30,8 +30,7 @@ import retrofit2.Response;
  * Created by WorkSpace on 5/4/2017.
  */
 
-public class TabViewVIPTips extends Fragment
-{
+public class TabViewVIPTips extends Fragment {
     private TextView tvVs;
     private String TAG = this.getClass().getSimpleName();
     private ListView listView;
@@ -44,7 +43,7 @@ public class TabViewVIPTips extends Fragment
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.tab_view_vip_tips,container,false);
+        View view = inflater.inflate(R.layout.tab_view_vip_tips, container, false);
 
         listView = (ListView) view.findViewById(R.id.lvTVVIPTips);
 
@@ -59,8 +58,8 @@ public class TabViewVIPTips extends Fragment
 
         return view;
     }
-    private void registerRefreshListener()
-    {
+
+    private void registerRefreshListener() {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
@@ -70,8 +69,8 @@ public class TabViewVIPTips extends Fragment
             }
         });
     }
-    private void populateListView(final View view)
-    {
+
+    private void populateListView(final View view) {
         final LinearLayout tvTodayProgress = (LinearLayout) view.findViewById(R.id.tvVIPTipsLoadingProgress);
 
         tvTodayProgress.setVisibility(View.VISIBLE);
@@ -81,11 +80,15 @@ public class TabViewVIPTips extends Fragment
             public void onResponse(Call<List<VIPTipsItem>> call, Response<List<VIPTipsItem>> response) {
                 vipTipsItems = response.body();
 
-                if(vipTipsItems.size() > 0)
-                {
-                    lvAdapterTVVIPTips = new LVAdapterTVVIPTips(view.getContext(),vipTipsItems);
-                    //set adapter
-                    listView.setAdapter(lvAdapterTVVIPTips);
+                if (vipTipsItems.size() > 0) {
+                    if (lvAdapterTVVIPTips == null) {
+
+                        lvAdapterTVVIPTips = new LVAdapterTVVIPTips(view.getContext(), vipTipsItems);
+                        //set adapter
+                        listView.setAdapter(lvAdapterTVVIPTips);
+                    }
+                    else
+                        lvAdapterTVVIPTips.updateData(vipTipsItems);
                 }
 
                 //dismiss loading circle

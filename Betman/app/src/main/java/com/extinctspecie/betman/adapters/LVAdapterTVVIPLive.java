@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.extinctspecie.betman.R;
@@ -75,7 +76,7 @@ public class LVAdapterTVVIPLive extends BaseAdapter
             viewHolder.tvOdd = (TextView) view.findViewById((R.id.tvOdd));
             viewHolder.tvOdd.setTypeface(Fonts.getSFDiegoSans());
 
-
+            viewHolder.imgFirstBall = (ImageView) view.findViewById(R.id.lvImgFirstBallVIPLiveTab);
             //tvTemp = (TextView) view.findViewById(R.id.tvOddSymbol);
             //tvTemp.setTypeface(Fonts.getSFDiegoSans());
 
@@ -97,7 +98,14 @@ public class LVAdapterTVVIPLive extends BaseAdapter
         viewHolder.tvOdd.setText(item.getOdd());
 
 
-
+        if(item.getMatchType().equals("Football"))
+        {
+            viewHolder.imgFirstBall.setImageResource(R.mipmap.football_icon);
+        }
+        else
+        {
+            viewHolder.imgFirstBall.setImageResource(R.mipmap.basketball_icon);
+        }
 
         if(i % 2 == 1)
             view.setAlpha(0.8f);
@@ -110,6 +118,7 @@ public class LVAdapterTVVIPLive extends BaseAdapter
         TextView tvTeamTwo;
         TextView tvPrediction;
         TextView tvOdd;
+        ImageView imgFirstBall;
     }
     public void updateData(List<VIPLiveItem> newTodayItems) {
         vipLiveItems = newTodayItems;

@@ -4,8 +4,7 @@ package com.extinctspecie.betman.models;
  * Created by WorkSpace on 5/2/2017.
  */
 
-public class TodayItem
-{
+public class TodayItem {
 
     private String teamOne;
     private String teamTwo;
@@ -15,8 +14,7 @@ public class TodayItem
     private String matchType;
 
     //empty constructor
-    public TodayItem()
-    {
+    public TodayItem() {
 
     }
 
@@ -60,5 +58,11 @@ public class TodayItem
         this.timeOfGame = timeOfGame;
     }
 
+    public String getMatchType() {
+        return matchType;
+    }
 
+    public void setMatchType(String matchType) {
+        this.matchType = matchType;
+    }
 }
