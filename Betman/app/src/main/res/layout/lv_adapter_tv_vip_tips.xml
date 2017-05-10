@@ -124,7 +124,7 @@
                     android:layout_weight="0.5"
                     android:text="Prediction" />
                 <ImageView
-                    android:id="@+id/lvImgFirstBallVIPTipsTab"
+                    android:id="@+id/lvImgSecondBallVIPTipsTab"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@mipmap/football_icon" />

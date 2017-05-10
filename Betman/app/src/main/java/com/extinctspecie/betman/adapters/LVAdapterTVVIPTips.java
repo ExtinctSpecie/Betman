@@ -83,7 +83,7 @@ public class LVAdapterTVVIPTips extends BaseAdapter
             viewHolder.tvTime.setTypeface(Fonts.getSFDiegoSans());
 
             viewHolder.imgFirstBall = (ImageView) view.findViewById(R.id.lvImgFirstBallVIPTipsTab);
-            viewHolder.imgSecondBall = (ImageView) view.findViewById(R.id.lvImgFirstBallVIPTipsTab);
+            viewHolder.imgSecondBall = (ImageView) view.findViewById(R.id.lvImgSecondBallVIPTipsTab);
 
             view.setTag(viewHolder);
         }
