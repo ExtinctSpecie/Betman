@@ -58,27 +58,32 @@ public class TabViewAdapter extends FragmentStatePagerAdapter
         switch (position) {
             case 0:
             {
-                myDrawable = context.getResources().getDrawable(R.mipmap.ic_today_black_24dp);
-                break;
+                return "Free";
+//                myDrawable = context.getResources().getDrawable(R.mipmap.ic_today_black_24dp);
+//                break;
             }
             case 1:
             {
-                myDrawable = context.getResources().getDrawable(R.mipmap.ic_vip_black_24dp);
-                break;
+                return "VIP";
+//                myDrawable = context.getResources().getDrawable(R.mipmap.ic_vip_black_24dp);
+//                break;
             }
             case 2:
             {
-                myDrawable = context.getResources().getDrawable(R.mipmap.ic_history_black_24dp);
-                break;
+                //myDrawable = context.getResources().getDrawable(R.mipmap.ic_history_black_24dp);
+                return "History";
+                //break;
             }
         }
 
-        SpannableStringBuilder sb = new SpannableStringBuilder("     "); // space added before text for convenience
-        myDrawable.setBounds(5, 5, myDrawable.getIntrinsicWidth(), myDrawable.getIntrinsicHeight());
-        ImageSpan span = new ImageSpan(myDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
-        sb.setSpan(span, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        SpannableStringBuilder sb = new SpannableStringBuilder("     "); // space added before text for convenience
+//        myDrawable.setBounds(5, 5, myDrawable.getIntrinsicWidth(), myDrawable.getIntrinsicHeight());
+//        ImageSpan span = new ImageSpan(myDrawable, DynamicDrawableSpan.ALIGN_BASELINE);
+//        sb.setSpan(span, 0, 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
-        return sb;
+//        return sb;
+
+        return null;
     }
 
     @Override

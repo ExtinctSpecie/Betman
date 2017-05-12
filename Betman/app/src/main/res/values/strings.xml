@@ -2,7 +2,7 @@
 
     <string name="googlePlayPublicKey">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsccPf7M2xLFEkEHk1/uIuj5PiOFyUMXjaFam+S9HufQXLjuxrXiHX4/w7ihaIg+ix4H9nj6ZcJb0iek2rthuTHI8qmFMMVxsg+MAcjpCSJxHglNWswDArOii4t29ar+KC9IPQFzBo/4AJfiAksyX54VW1lNfH+JbObVe9VdFNAncoGt2wKi7T4tsTe3nI86MMPCGQ9RizfpZLHWbvL5EdV7rK4vKhDO2AJHraHYM8y4W3mjuzMHj4O5UvDO4VcoUbU7RWtg8liOGohBLU3+yIVUFNG3Im44y2AnmkX5ZJKqEJ3sABrCpOL6LkvF9Vh1+0TJML6jq4l8Y2Abmk+v8+QIDAQAB</string>
 
-    <string name="app_name">Betman</string>
+    <string name="app_name">Betman Pro</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
 
@@ -12,7 +12,7 @@
     <string name="tv_history_title">History</string>
 
 
-    <string name="notSubText">Για να δείτε τους VIP αγώνες πρέπει να γίνεται VIP μέλοι \n Πατήστε το παρακάτω κουμπάκι να κάνετε εγγραφή</string>
+    <string name="notSubText">To see the VIP content you have to subscribe!!</string>
     <string name="my_own_title">Rate this app</string>
     <string name="my_own_message">Please rate the app</string>
     <string name="my_own_rate">Sure</string>

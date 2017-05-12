@@ -12,7 +12,7 @@
         android:elevation="5dp"
         android:foreground="?android:attr/selectableItemBackground"
         android:padding="10dp"
-        app:cardBackgroundColor="@color/lvItemVipLiveBackground"
+        app:cardBackgroundColor="#f9f9f9"
         app:cardCornerRadius="4dp">
 
         <LinearLayout

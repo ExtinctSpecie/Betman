@@ -100,25 +100,6 @@ public class TabViewVIP extends Fragment {
 
 
     }
-
-    IabHelper.OnIabPurchaseFinishedListener onIabPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-        @Override
-        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-            Log.d(TAG, "purchasing: " + result);
-            if (!result.isSuccess()) {
-
-                Log.d(TAG, "Error purchasing: " + result);
-            } else if (result.isSuccess()) {
-                
-                try {
-                    iabHelper.queryInventoryAsync(queryInventoryAsync);
-                } catch (IabHelper.IabAsyncInProgressException e) {
-                    e.printStackTrace();
-                    Log.d(TAG, "Querying inventory throwed an exception.");
-                }
-            }
-        }
-    };
     IabHelper.OnIabSetupFinishedListener onIabSetupFinishedListener = new IabHelper.OnIabSetupFinishedListener() {
         @Override
         public void onIabSetupFinished(IabResult result) {
@@ -151,15 +132,43 @@ public class TabViewVIP extends Fragment {
             }
         }
     };
+    IabHelper.OnIabPurchaseFinishedListener onIabPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
+        @Override
+        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
+            Log.d(TAG, "purchasing: " + result);
+            if (!result.isSuccess()) {
+
+                Log.d(TAG, "Error purchasing: " + result);
+            }
+            else if(result.isSuccess())
+            {
+                tabVipView.findViewById(R.id.noSubLayout).setVisibility(View.GONE);
+
+                tabVipView.findViewById(R.id.subLayout).setVisibility(View.VISIBLE);
+            }
+
+            try {
+                iabHelper.queryInventoryAsync(queryInventoryAsync);
+            } catch (IabHelper.IabAsyncInProgressException e) {
+                e.printStackTrace();
+                Log.d(TAG, "Querying inventory throwed an exception.");
+            }
+        }
+    };
+
     IabHelper.QueryInventoryFinishedListener queryInventoryAsync = new IabHelper.QueryInventoryFinishedListener() {
         @Override
         public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
             if (inventory.hasPurchase(SUB_SKU)) {
 
+                Log.v(TAG,"token" + inventory.getPurchase(SUB_SKU).getToken());
+                Log.v(TAG,"package" + inventory.getPurchase(SUB_SKU).getPackageName());
+                Log.v(TAG,"order id" + inventory.getPurchase(SUB_SKU).getOrderId());
+
                 tabVipView.findViewById(R.id.noSubLayout).setVisibility(View.GONE);
 
                 tabVipView.findViewById(R.id.subLayout).setVisibility(View.VISIBLE);
-                //iabHelper.consumeAsync(inventory.getPurchase(SUB_SKU), onConsumeFinishedListener);
+
             }
 
         }
@@ -167,6 +176,9 @@ public class TabViewVIP extends Fragment {
     IabHelper.OnConsumeFinishedListener onConsumeFinishedListener = new IabHelper.OnConsumeFinishedListener() {
         @Override
         public void onConsumeFinished(Purchase purchase, IabResult result) {
+
+
+
             if (result.isSuccess()) {
                 Log.d(TAG, "On Consume Finished True.");
             }
@@ -179,39 +191,18 @@ public class TabViewVIP extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
 
-        if (requestCode == RC_VIP_SUB) {
-            if (resultCode == Activity.RESULT_OK) {
-                // Pass on the activity result to the helper for handling
-                if (!iabHelper.handleActivityResult(requestCode, resultCode, data)) {
-                    // not handled, so handle it ourselves (here's where you'd
-                    // perform any handling of activity results not related to in-app
-                    // billing...
-                    Log.d(TAG, "onActivityResult handled by IABUtil.");
-                    super.onActivityResult(requestCode, resultCode, data);
-                } else {
-                    //Log.d(TAG, "onActivityResult handled by IABUtil.");
-                }
-            } else if (resultCode == Activity.RESULT_CANCELED) {
-                String reason = "";
+        Log.d(TAG, "onActivityResult(" + requestCode + "," + resultCode + "," + data);
 
-                if (data != null) {
-                    reason = data.getStringExtra("reason");
-                    if (reason.equals("connection")) {
-                        displayShortToastMessage("Check Internet Connection");
-                        final Handler handler = new Handler();
-                        handler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-
-                                getActivity().finish();
-                            }
-                        }, 1000);
-                    }
-                }
-
-            }
-        } else
+        // Pass on the activity result to the helper for handling
+        if (!iabHelper.handleActivityResult(requestCode, resultCode, data)) {
+            // not handled, so handle it ourselves (here's where you'd
+            // perform any handling of activity results not related to in-app
+            // billing...
             super.onActivityResult(requestCode, resultCode, data);
+        }
+        else {
+            Log.d(TAG, "onActivityResult handled by IABUtil.");
+        }
 
     }
 
@@ -221,5 +212,24 @@ public class TabViewVIP extends Fragment {
 
     private void displayLongToastMessage(String s) {
         Toast.makeText(getActivity(), s, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onDestroy() {
+
+        if(iabHelper!=null)
+            try {
+                iabHelper.dispose();
+            } catch (IabHelper.IabAsyncInProgressException e) {
+                e.printStackTrace();
+            }
+
+        iabHelper = null;
+        super.onDestroy();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }
