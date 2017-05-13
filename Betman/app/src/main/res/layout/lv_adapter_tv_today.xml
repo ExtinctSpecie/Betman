@@ -42,12 +42,14 @@
 
                 <TextView
                     android:id="@+id/tvTeamOne"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Team #1"
-                     />
+                    android:maxLines="1"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"/>
 
                 <TextView
                     android:id="@+id/tvVSHelper"
@@ -59,12 +61,13 @@
 
                 <TextView
                     android:id="@+id/tvTeamTwo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="Team #2"
-                     />
+                    android:maxLines="1"
+                    android:layout_marginRight="3dp"/>
 
             </LinearLayout>
 

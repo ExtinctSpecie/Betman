@@ -46,7 +46,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Team #1" />
+                    android:maxLines="1"
+                    android:text="Team #1"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"/>
 
                 <TextView
                     android:id="@+id/tvVSHelper"
@@ -62,7 +65,10 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="center"
-                    android:text="Team #2" />
+                    android:maxLines="1"
+                    android:text="Team #2"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginRight="3dp"/>
 
             </LinearLayout>
 
