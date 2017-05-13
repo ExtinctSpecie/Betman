@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.extinctspecie.betman.adapters.LVAdapterNoItems;
 import com.extinctspecie.betman.adapters.LVAdapterTVToday;
 import com.extinctspecie.betman.adapters.LVAdapterTVVIPTips;
 import com.extinctspecie.betman.R;
@@ -86,11 +87,11 @@ public class TabViewVIPTips extends Fragment {
                         lvAdapterTVVIPTips = new LVAdapterTVVIPTips(view.getContext(), vipTipsItems);
                         //set adapter
                         listView.setAdapter(lvAdapterTVVIPTips);
-                    }
-                    else
+                    } else
                         lvAdapterTVVIPTips.updateData(vipTipsItems);
+                } else {
+                    listView.setAdapter(new LVAdapterNoItems(getActivity().getBaseContext()));
                 }
-
                 //dismiss loading circle
                 tvTodayProgress.setVisibility(View.GONE);
             }

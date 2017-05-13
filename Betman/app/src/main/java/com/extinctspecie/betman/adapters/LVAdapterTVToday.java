@@ -156,6 +156,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     }
 
     public void noItemsAvailable() {
+
         adView.findViewById(R.id.adReadyToView).setVisibility(View.GONE);
         adView.setVisibility(View.GONE);
         todayItems.clear();

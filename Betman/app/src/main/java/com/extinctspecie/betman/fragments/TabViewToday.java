@@ -9,18 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.extinctspecie.betman.adapters.LVAdapterTVToday;
 import com.extinctspecie.betman.R;
+import com.extinctspecie.betman.adapters.LVAdapterNoItems;
 import com.extinctspecie.betman.helpers.Log;
 import com.extinctspecie.betman.models.TodayItem;
 import com.extinctspecie.betman.services.ITodayService;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.MobileAds;
-import com.google.android.gms.ads.reward.RewardItem;
-import com.google.android.gms.ads.reward.RewardedVideoAd;
-import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
 import java.util.List;
 
@@ -86,11 +81,8 @@ public class TabViewToday extends Fragment {
                     lvAdapterTVToday = new LVAdapterTVToday(getActivity().getBaseContext(), todayItems);
                     //set adapter
                     listView.setAdapter(lvAdapterTVToday);
-                }
-                else
-                {
-                    if(lvAdapterTVToday!=null)
-                        lvAdapterTVToday.noItemsAvailable();
+                } else {
+                    listView.setAdapter(new LVAdapterNoItems(getActivity().getBaseContext()));
                 }
                 tvTodayProgress.setVisibility(View.GONE);
             }

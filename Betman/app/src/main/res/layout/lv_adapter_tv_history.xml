@@ -64,8 +64,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
                     android:gravity="center"
-                    android:text="Team #1"
-                    android:textSize="20sp" />
+                    android:text="Team #1" />
 
                 <TextView
                     android:id="@+id/tvVSHelper"
@@ -73,7 +72,7 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="vs"
-                    android:textSize="20sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tvTeamTwo"
@@ -81,8 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="0.4"
                     android:gravity="center"
-                    android:text="Team #2"
-                    android:textSize="20sp" />
+                    android:text="Team #2"/>
 
             </LinearLayout>
 

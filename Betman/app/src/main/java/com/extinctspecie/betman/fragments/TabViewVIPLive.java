@@ -1,7 +1,6 @@
 package com.extinctspecie.betman.fragments;
 
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -13,8 +12,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.extinctspecie.betman.R;
+import com.extinctspecie.betman.adapters.LVAdapterNoItems;
 import com.extinctspecie.betman.adapters.LVAdapterTVVIPLive;
-import com.extinctspecie.betman.helpers.InternetConnectionDetector;
 import com.extinctspecie.betman.helpers.Log;
 import com.extinctspecie.betman.models.VIPLiveItem;
 import com.extinctspecie.betman.services.IVIPLiveService;
@@ -83,9 +82,10 @@ public class TabViewVIPLive extends Fragment {
                         lvAdapterTVVIPLive = new LVAdapterTVVIPLive(view.getContext(), vipLiveItems);
                         //set adapter
                         listView.setAdapter(lvAdapterTVVIPLive);
-                    }
-                    else
+                    } else
                         lvAdapterTVVIPLive.updateData(vipLiveItems);
+                } else {
+                    listView.setAdapter(new LVAdapterNoItems(getActivity().getBaseContext()));
                 }
 
                 //dismiss loading circle
