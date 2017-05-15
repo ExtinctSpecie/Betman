@@ -1,36 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <android.support.v4.widget.SwipeRefreshLayout
-        android:id="@+id/tvHistorySwipeRefresh"
+    <RelativeLayout
+        android:id="@+id/tvHistoryWinRateBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <ListView
-            android:id="@+id/lvTVHistory"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:background="@color/deepPurplePrimary"
-            android:divider="@null"
-            android:dividerHeight="0dp"
-            />
+        android:layout_height="wrap_content">
 
-    </android.support.v4.widget.SwipeRefreshLayout>
+        <TextView
+            android:id="@+id/tvHelperWinRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Win rate : "
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvHistoryWinRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toRightOf="@id/tvHelperWinRate"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="0.0%"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvHistoryLossRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="0.0%"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:id="@+id/tvHelperLossRate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toLeftOf="@+id/tvHistoryLossRate"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="Loss rate :"
+            android:textColor="@color/black" />
+    </RelativeLayout>
+
+
+    <!--<RelativeLayout-->
+    <!--android:id="@+id/tvHistoryViewsBar"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentBottom="true">-->
+
+    <!--<ImageView-->
+    <!--android:id="@+id/imViewsIcon"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_centerVertical="true"-->
+    <!--android:layout_alignParentStart="true"-->
+    <!--android:layout_marginStart="80dp"-->
+    <!--android:background="@drawable/ic_visibility_black_24dp" />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvHistoryViewsHelper"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_toRightOf="@+id/imViewsIcon"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:gravity="center"-->
+    <!--android:padding="10dp"-->
+    <!--android:text="Views : " />-->
+
+    <!--<TextView-->
+    <!--android:id="@+id/tvHistoryViews"-->
+    <!--android:layout_width="wrap_content"-->
+    <!--android:layout_height="wrap_content"-->
+    <!--android:layout_alignParentEnd="true"-->
+    <!--android:layout_marginEnd="100dp"-->
+    <!--android:gravity="center"-->
+    <!--android:textColor="@color/black"-->
+    <!--android:padding="10dp"-->
+    <!--android:text="438" />-->
+    <!--</RelativeLayout>-->
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tvHistoryWinRateBar">
+
+        <android.support.v4.widget.SwipeRefreshLayout
+            android:id="@+id/tvHistorySwipeRefresh"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ListView
+                android:id="@+id/lvTVHistory"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:background="@color/deepPurplePrimary"
+                android:divider="@null"
+                android:dividerHeight="0dp" />
+
+        </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+
+
     <LinearLayout
         android:id="@+id/tvHistoryLoadingProgress"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:gravity="center"
         android:orientation="vertical"
-        android:visibility="gone" >
+        android:visibility="gone">
 
         <ProgressBar
             android:id="@+id/pbHeaderProgress"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" >
-        </ProgressBar>
+            android:layout_height="wrap_content"></ProgressBar>
     </LinearLayout>
 </RelativeLayout>

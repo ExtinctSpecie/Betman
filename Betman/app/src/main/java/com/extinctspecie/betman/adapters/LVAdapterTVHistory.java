@@ -20,20 +20,19 @@ import java.util.List;
  * Created by WorkSpace on 5/4/2017.
  */
 
-public class LVAdapterTVHistory extends BaseAdapter
-{
+public class LVAdapterTVHistory extends BaseAdapter {
 
     private Context context;
     private List<HistoryItem> historyItems;
     private LayoutInflater layoutInflater;
-    private HistoryItem item ;
+    private HistoryItem item;
 
-    public LVAdapterTVHistory(Context context , List<HistoryItem> historyItems)
-    {
+    public LVAdapterTVHistory(Context context, List<HistoryItem> historyItems) {
         this.historyItems = historyItems;
         this.context = context;
         this.layoutInflater = LayoutInflater.from(context);
     }
+
     @Override
     public int getCount() {
         return historyItems.size();
@@ -54,55 +53,47 @@ public class LVAdapterTVHistory extends BaseAdapter
         final ViewHolder viewHolder;
 
 
-        if(view==null)
-        {
+        if (view == null) {
             TextView tvTemp;
             viewHolder = new ViewHolder();
-            view = layoutInflater.inflate(R.layout.lv_adapter_tv_history,null);
+            view = layoutInflater.inflate(R.layout.lv_adapter_tv_history, null);
             viewHolder.tvTeamOne = (TextView) view.findViewById(R.id.tvTeamOne);
-            viewHolder.tvTeamOne.setTypeface(Fonts.getSFDiegoSans());
+            viewHolder.tvTeamOne.setTypeface(Fonts.getFavFont());
 
             viewHolder.tvTeamTwo = (TextView) view.findViewById(R.id.tvTeamTwo);
-            viewHolder.tvTeamTwo.setTypeface(Fonts.getSFDiegoSans());
+            viewHolder.tvTeamTwo.setTypeface(Fonts.getFavFont());
 
             tvTemp = (TextView) view.findViewById(R.id.tvVSHelper);
-            tvTemp.setTypeface(Fonts.getSFDiegoSans());
+            tvTemp.setTypeface(Fonts.getFavFont());
 
             viewHolder.tvPrediction = (TextView) view.findViewById((R.id.tvPrediction));
-            viewHolder.tvPrediction.setTypeface(Fonts.getSFDiegoSans());
+            viewHolder.tvPrediction.setTypeface(Fonts.getFavFont());
 
             viewHolder.tvOdd = (TextView) view.findViewById((R.id.tvOdd));
-            viewHolder.tvOdd.setTypeface(Fonts.getSFDiegoSans());
+            viewHolder.tvOdd.setTypeface(Fonts.getFavFont());
 
             viewHolder.tvTime = (TextView) view.findViewById(R.id.tvTime);
-            viewHolder.tvTime.setTypeface(Fonts.getSFDiegoSans());
+            viewHolder.tvTime.setTypeface(Fonts.getFavFont());
 
             viewHolder.tvDate = (TextView) view.findViewById(R.id.tvDate);
-            viewHolder.tvDate.setTypeface(Fonts.getSFDiegoSans());
+            viewHolder.tvDate.setTypeface(Fonts.getFavFont());
 
 
             viewHolder.tvFinalScore = (TextView) view.findViewById(R.id.tvFinalScore);
-            //viewHolder.tvFinalScore.setTypeface(Fonts.getSFDiegoSans());
-
 
             viewHolder.llHistoryItem = (LinearLayout) view.findViewById(R.id.llHistoryItem);
-
-            //tvTemp = (TextView) view.findViewById(R.id.tvOddSymbol);
-            //tvTemp.setTypeface(Fonts.getSFDiegoSans());
 
             viewHolder.imgFirstBall = (ImageView) view.findViewById(R.id.lvImgFirstBallHistoryTab);
             viewHolder.imgSecondBall = (ImageView) view.findViewById(R.id.lvImgSecondBallHistoryTab);
 
             view.setTag(viewHolder);
-        }
-        else
-        {
+        } else {
             viewHolder = (ViewHolder) view.getTag();
         }
 
         item = historyItems.get(position);
 
-        viewHolder.tvTime.setText(item.getTimeOfGame().substring(11,16));
+        viewHolder.tvTime.setText(item.getTimeOfGame().substring(11, 16));
 
         viewHolder.tvDate.setText(item.getDateOfGame().replace("-", "/"));
 
@@ -116,27 +107,27 @@ public class LVAdapterTVHistory extends BaseAdapter
 
         viewHolder.tvFinalScore.setText(item.getFinalScore());
 
-        if(item.getMatchType().equals("Football"))
-        {
+        if (item.getMatchType().equals("Football")) {
             viewHolder.imgFirstBall.setImageResource(R.mipmap.football_icon);
             viewHolder.imgSecondBall.setImageResource(R.mipmap.football_icon);
-        }
-        else
-        {
+        } else {
             viewHolder.imgFirstBall.setImageResource(R.mipmap.basketball_icon);
             viewHolder.imgSecondBall.setImageResource(R.mipmap.basketball_icon);
         }
 
 
-        if (item.getResult().equals("true")){
+        if (item.getResult().equals("true")) {
             viewHolder.llHistoryItem.setBackgroundColor((context.getResources().getColor(R.color.historyWonGreen)));
+        }
+        if (item.getResult().equals("false")) {
+            viewHolder.llHistoryItem.setBackgroundColor((context.getResources().getColor(R.color.predictionFailed)));
         }
 
 
         return view;
     }
-    static class ViewHolder
-    {
+
+    static class ViewHolder {
         TextView tvTeamOne;
         TextView tvTeamTwo;
         TextView tvTime;
@@ -148,6 +139,7 @@ public class LVAdapterTVHistory extends BaseAdapter
         ImageView imgSecondBall;
         LinearLayout llHistoryItem;
     }
+
     public void updateData(List<HistoryItem> newTodayItems) {
         historyItems = newTodayItems;
         notifyDataSetChanged();

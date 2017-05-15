@@ -15,6 +15,7 @@ import com.extinctspecie.betman.adapters.LVAdapterTVHistory;
 import com.extinctspecie.betman.R;
 import com.extinctspecie.betman.helpers.Log;
 import com.extinctspecie.betman.models.HistoryItem;
+import com.extinctspecie.betman.models.HistoryWinrate;
 import com.extinctspecie.betman.services.IHistoryService;
 
 import java.util.List;
@@ -47,9 +48,11 @@ public class TabViewHistory extends Fragment {
         swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.tvHistorySwipeRefresh);
 
         populateListView(view);
+        setWinrate(view);
         registerRefreshListener();
         return view;
     }
+
 
     private void registerRefreshListener() {
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -57,6 +60,7 @@ public class TabViewHistory extends Fragment {
             public void onRefresh() {
                 Log.v(TAG, "Refresh was triggered");
                 populateListView(getView());
+                setWinrate(getView());
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
@@ -75,12 +79,10 @@ public class TabViewHistory extends Fragment {
 
                 if (historyItems.size() > 0) {
 
-                    if(lvAdapterHistory == null)
-                    {
+                    if (lvAdapterHistory == null) {
                         lvAdapterHistory = new LVAdapterTVHistory(getActivity().getBaseContext(), historyItems);
                         listView.setAdapter(lvAdapterHistory);
-                    }
-                    else
+                    } else
                         lvAdapterHistory.updateData(historyItems);
 
                 }
@@ -97,6 +99,22 @@ public class TabViewHistory extends Fragment {
             }
         });
 
+    }
+
+    private void setWinrate(final View view) {
+        IHistoryService.Factory.getInstance().getHistoryWinrate().enqueue(new Callback<List<HistoryWinrate>>() {
+            @Override
+            public void onResponse(Call<List<HistoryWinrate>> call, Response<List<HistoryWinrate>> response) {
+
+                ((TextView)view.findViewById(R.id.tvHistoryWinRate)).setText( String.valueOf(response.body().get(0).getWinrate())+ " %");
+                ((TextView)view.findViewById(R.id.tvHistoryLossRate)).setText( String.valueOf(100.0 - response.body().get(0).getWinrate())+ " %");
+            }
+
+            @Override
+            public void onFailure(Call<List<HistoryWinrate>> call, Throwable t) {
+                Log.v(TAG, "Error while getting winrate " + t);
+            }
+        });
     }
 
 }

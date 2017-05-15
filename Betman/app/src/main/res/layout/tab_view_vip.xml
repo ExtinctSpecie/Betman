@@ -67,25 +67,26 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Tips"
-                android:textSize="12sp"
-                android:gravity="center"
                 android:background="@color/deepPurplePrimary"
+                android:gravity="center"
+                android:text="Tips"
                 android:textColor="@color/black"
-                />
+                android:textSize="12sp" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:text="Live"
-                android:textSize="12sp"
-                android:gravity="center"
                 android:background="@color/deepPurplePrimaryDark"
-                android:textColor="@color/black"/>
+                android:gravity="center"
+                android:text="Live"
+                android:textColor="@color/black"
+                android:textSize="12sp" />
 
         </LinearLayout>
 
@@ -94,9 +95,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:layout_margin="20dp"
             android:text="Subscribe"
             android:textAllCaps="false"
-            android:layout_margin="20dp"/>
+            android:textColor="@color/black" />
 
         <TextView
             android:layout_width="200dp"
@@ -105,7 +107,38 @@
             android:layout_centerHorizontal="true"
             android:text="@string/notSubText"
             android:textAlignment="center"
+            android:textColor="@color/black"
             android:textStyle="bold" />
+
+        <!--<RelativeLayout-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:layout_marginBottom="20dp"-->
+        <!--android:textAlignment="center">-->
+        <!--<TextView-->
+        <!--android:id="@+id/tvVIPSubHelper"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="Total Subscribers : "-->
+        <!--android:textAlignment="center"-->
+        <!--android:textColor="@color/black"-->
+        <!--android:textSize="15sp"-->
+        <!--android:textStyle="bold" />-->
+
+        <!--<TextView-->
+        <!--android:id="@+id/tvVIPSubCount"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_toEndOf="@id/tvVIPSubHelper"-->
+        <!--android:text="286"-->
+        <!--android:textStyle="bold"-->
+        <!--android:textSize="15sp"-->
+        <!--android:textAlignment="center"-->
+        <!--android:textColor="@color/black" />-->
+        <!--</RelativeLayout>-->
+
 
     </RelativeLayout>
 </RelativeLayout>

@@ -1,5 +1,7 @@
 package com.extinctspecie.betman.models;
 
+import com.extinctspecie.betman.helpers.Log;
+
 /**
  * Created by gomes on 4/5/2017.
  */
@@ -94,4 +96,25 @@ public class HistoryItem {
         this.matchType = matchType;
     }
 
+    public void printItem()
+    {
+        if(teamOne != null)
+            Log.v("HistoryItem : ",teamOne);
+        if(teamTwo != null)
+            Log.v("HistoryItem : ",teamTwo);
+        if(odd != null)
+            Log.v("HistoryItem : ",odd);
+        if(prediction != null)
+            Log.v("HistoryItem : ",prediction);
+        if(timeOfGame != null)
+            Log.v("HistoryItem : ",timeOfGame);
+        if(dateOfGame != null)
+            Log.v("HistoryItem : ",dateOfGame);
+        if(matchType != null)
+            Log.v("HistoryItem : ",matchType);
+        if(result != null)
+            Log.v("HistoryItem : ",result);
+        if(finalScore != null)
+            Log.v("HistoryItem : ",finalScore);
+    }
 }

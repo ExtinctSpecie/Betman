@@ -62,23 +62,21 @@ public class LVAdapterTVVIPLive extends BaseAdapter
 
 
             viewHolder.tvTeamOne = (TextView) view.findViewById(R.id.tvTeamOne);
-            viewHolder.tvTeamOne.setTypeface(Fonts.getSFDiegoSans());
+            viewHolder.tvTeamOne.setTypeface(Fonts.getFavFont());
 
             viewHolder.tvTeamTwo = (TextView) view.findViewById(R.id.tvTeamTwo);
-            viewHolder.tvTeamTwo.setTypeface(Fonts.getSFDiegoSans());
+            viewHolder.tvTeamTwo.setTypeface(Fonts.getFavFont());
 
             tvTemp = (TextView) view.findViewById(R.id.tvVSHelper);
-            tvTemp.setTypeface(Fonts.getSFDiegoSans());
+            tvTemp.setTypeface(Fonts.getFavFont());
 
             viewHolder.tvPrediction = (TextView) view.findViewById((R.id.tvPrediction));
-            viewHolder.tvPrediction.setTypeface(Fonts.getSFDiegoSans());
+            viewHolder.tvPrediction.setTypeface(Fonts.getFavFont());
 
             viewHolder.tvOdd = (TextView) view.findViewById((R.id.tvOdd));
-            viewHolder.tvOdd.setTypeface(Fonts.getSFDiegoSans());
+            viewHolder.tvOdd.setTypeface(Fonts.getFavFont());
 
             viewHolder.imgFirstBall = (ImageView) view.findViewById(R.id.lvImgFirstBallVIPLiveTab);
-            //tvTemp = (TextView) view.findViewById(R.id.tvOddSymbol);
-            //tvTemp.setTypeface(Fonts.getSFDiegoSans());
 
             view.setTag(viewHolder);
         }

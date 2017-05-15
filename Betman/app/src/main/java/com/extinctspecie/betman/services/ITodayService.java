@@ -30,7 +30,7 @@ public interface ITodayService {
             if (service == null) {
 
                 Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(Information.getBaseUrl()).build();
-                ITodayService service = retrofit.create(ITodayService.class);
+                service = retrofit.create(ITodayService.class);
                 return service;
             } else {
                 return service;

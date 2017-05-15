@@ -28,7 +28,7 @@ public interface IVIPLiveService
             if (service == null) {
 
                 Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(Information.getBaseUrl()).build();
-                IVIPLiveService service = retrofit.create(IVIPLiveService.class);
+                service = retrofit.create(IVIPLiveService.class);
                 return service;
             } else {
                 return service;

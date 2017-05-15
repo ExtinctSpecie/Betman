@@ -18,7 +18,6 @@
             android:id="@+id/llHistoryItem"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/holo_red_light"
             android:orientation="vertical">
 
             <LinearLayout

@@ -2,9 +2,14 @@ package com.extinctspecie.betman.services;
 
 import com.extinctspecie.betman.helpers.Information;
 import com.extinctspecie.betman.models.HistoryItem;
+import com.extinctspecie.betman.models.HistoryWinrate;
 import com.extinctspecie.betman.models.TodayItem;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.List;
+import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -20,6 +25,9 @@ public interface IHistoryService {
     @GET("history")
     Call<List<HistoryItem>> getHistoryItems();
 
+    @GET("history/winrate")
+    Call<List<HistoryWinrate>> getHistoryWinrate();
+
     public class Factory {
         private static IHistoryService service;
 
@@ -27,7 +35,7 @@ public interface IHistoryService {
             if (service == null) {
 
                 Retrofit retrofit = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create()).baseUrl(Information.getBaseUrl()).build();
-                IHistoryService service = retrofit.create(IHistoryService.class);
+                service = retrofit.create(IHistoryService.class);
                 return service;
             } else {
                 return service;

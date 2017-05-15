@@ -38,8 +38,7 @@ public class TabViewVIP extends Fragment {
 
     private IabHelper iabHelper;
     private String base64EncodedPublicKey;
-    private final String SUB_SKU = "betman_vip_subscription";
-    private boolean iabHelperSetupSucceeded;
+    private final String SUB_SKU = "subscription_5_euro";
     static final int RC_VIP_SUB = 10001;
 
     @Nullable
