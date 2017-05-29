@@ -1,6 +1,7 @@
 package com.extinctspecie.betman.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import com.extinctspecie.betman.models.TodayItem;
 import com.extinctspecie.betman.models.VIPLiveItem;
 import com.extinctspecie.betman.models.VIPTipsItem;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +88,9 @@ public class LVAdapterTVVIPTips extends BaseAdapter
             viewHolder.imgFirstBall = (ImageView) view.findViewById(R.id.lvImgFirstBallVIPTipsTab);
             viewHolder.imgSecondBall = (ImageView) view.findViewById(R.id.lvImgSecondBallVIPTipsTab);
 
+            viewHolder.imgFirstFlag = (ImageView) view.findViewById(R.id.lvImgFirstFlagVIPTipsTab);
+            viewHolder.imgSecondFlag = (ImageView) view.findViewById(R.id.lvImgSecondFlagVIPTipsTab);
+
             view.setTag(viewHolder);
         }
         else
@@ -115,10 +121,38 @@ public class LVAdapterTVVIPTips extends BaseAdapter
             viewHolder.imgSecondBall.setImageResource(R.mipmap.basketball_icon);
         }
 
+        if(item.getTeamOneCountry() != null)
+        {
+            viewHolder.imgFirstFlag.setImageDrawable(getFlag(item.getTeamOneCountry()));
+
+            if(item.getTeamTwoCountry() == null || item.getTeamTwoCountry().equals(""))
+            {
+                viewHolder.imgSecondFlag.setImageDrawable(getFlag(item.getTeamOneCountry()));
+            }
+            else
+            {
+                viewHolder.imgSecondFlag.setImageDrawable(getFlag(item.getTeamTwoCountry()));
+            }
+        }
+
         if(i % 2 == 1)
             view.setAlpha(0.8f);
 
         return view;
+    }
+    private Drawable getFlag(String isoName) {
+
+        try {
+            String fileName = "flags_iso/"+isoName.toLowerCase() + ".png";
+            InputStream ims = null;
+            ims = context.getAssets().open(fileName);
+            Drawable d = Drawable.createFromStream(ims, null);
+            ims.close();
+            return d;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
     static class ViewHolder
     {
@@ -129,6 +163,8 @@ public class LVAdapterTVVIPTips extends BaseAdapter
         TextView tvOdd;
         ImageView imgFirstBall;
         ImageView imgSecondBall;
+        ImageView imgFirstFlag;
+        ImageView imgSecondFlag;
     }
     public void updateData(List<VIPTipsItem> newTodayItems) {
         vipTipsItems = newTodayItems;

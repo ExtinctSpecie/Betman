@@ -159,11 +159,11 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
 
             if(item.getTeamTwoCountry() == null || item.getTeamTwoCountry().equals(""))
             {
-                viewHolder.imgSecondFlag.setBackground(getFlag(item.getTeamOneCountry()));
+                viewHolder.imgSecondFlag.setImageDrawable(getFlag(item.getTeamOneCountry()));
             }
             else
             {
-                viewHolder.imgSecondFlag.setBackground(getFlag(item.getTeamTwoCountry()));
+                viewHolder.imgSecondFlag.setImageDrawable(getFlag(item.getTeamTwoCountry()));
             }
         }
 

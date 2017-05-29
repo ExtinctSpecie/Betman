@@ -158,6 +158,8 @@ public class TabViewVIP extends Fragment {
     IabHelper.QueryInventoryFinishedListener queryInventoryAsync = new IabHelper.QueryInventoryFinishedListener() {
         @Override
         public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
+
+
             if (inventory.hasPurchase(SUB_SKU)) {
 
                 Log.v(TAG,"token" + inventory.getPurchase(SUB_SKU).getToken());

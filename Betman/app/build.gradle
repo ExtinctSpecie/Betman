@@ -24,10 +24,10 @@ android {
         manifestPlaceholders = [onesignal_app_id: "d58187b6-68f7-445a-9636-f5de05c12906",
                                 // Project number pulled from dashboard, local value is ignored.
                                 onesignal_google_project_number: "950168759880"]
-        minSdkVersion 16
+        minSdkVersion 15
         targetSdkVersion 25
         versionCode 8
-        versionName "0.99"
+        versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {

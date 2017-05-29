@@ -12,7 +12,9 @@ public class VIPTipsItem
     private String prediction;
     private String timeOfGame;
     private String matchType;
-    
+    private String teamOneCountry;
+    private String teamTwoCountry;
+
     public VIPTipsItem() {
     }
 
@@ -62,5 +64,21 @@ public class VIPTipsItem
 
     public void setMatchType(String matchType) {
         this.matchType = matchType;
+    }
+
+    public String getTeamOneCountry() {
+        return teamOneCountry;
+    }
+
+    public void setTeamOneCountry(String teamOneCountry) {
+        this.teamOneCountry = teamOneCountry;
+    }
+
+    public String getTeamTwoCountry() {
+        return teamTwoCountry;
+    }
+
+    public void setTeamTwoCountry(String teamTwoCountry) {
+        this.teamTwoCountry = teamTwoCountry;
     }
 }

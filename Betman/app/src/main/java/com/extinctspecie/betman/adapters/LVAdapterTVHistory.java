@@ -129,7 +129,7 @@ public class LVAdapterTVHistory extends BaseAdapter {
             viewHolder.llHistoryItem.setBackgroundColor((context.getResources().getColor(R.color.predictionFailed)));
         }
 
-        if(item.getTeamOneCountry() != null)
+        if(item.getTeamOneCountry() != null && !item.getTeamOneCountry().equals(""))
         {
             viewHolder.imgFlag.setImageDrawable(getFlag(item.getTeamOneCountry()));
 
