@@ -17,7 +17,8 @@ public class HistoryItem {
     private String dateOfGame;
     private String timeOfGame;
     private String matchType;
-
+    private String teamOneCountry;
+    private String teamTwoCountry;
 
     //empty constructor
     public HistoryItem()
@@ -96,7 +97,23 @@ public class HistoryItem {
         this.matchType = matchType;
     }
 
-    public void printItem()
+    public String getTeamOneCountry() {
+        return teamOneCountry;
+    }
+
+    public void setTeamOneCountry(String teamOneCountry) {
+        this.teamOneCountry = teamOneCountry;
+    }
+
+    public String getTeamTwoCountry() {
+        return teamTwoCountry;
+    }
+
+    public void setTeamTwoCountry(String teamTwoCountry) {
+        this.teamTwoCountry = teamTwoCountry;
+    }
+
+    public void printSelf()
     {
         if(teamOne != null)
             Log.v("HistoryItem : ",teamOne);

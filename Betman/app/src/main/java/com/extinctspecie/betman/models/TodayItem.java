@@ -1,17 +1,22 @@
 package com.extinctspecie.betman.models;
 
+import com.extinctspecie.betman.helpers.Log;
+
 /**
  * Created by WorkSpace on 5/2/2017.
  */
 
 public class TodayItem {
 
+    private String TAG = this.getClass().getSimpleName();
     private String teamOne;
     private String teamTwo;
     private String odd;
     private String prediction;
     private String timeOfGame;
     private String matchType;
+    private String teamOneCountry;
+    private String teamTwoCountry;
 
     //empty constructor
     public TodayItem() {
@@ -64,5 +69,33 @@ public class TodayItem {
 
     public void setMatchType(String matchType) {
         this.matchType = matchType;
+    }
+
+    public String getTeamOneCountry() {
+        return teamOneCountry;
+    }
+
+    public void setTeamOneCountry(String teamOneCountry) {
+        this.teamOneCountry = teamOneCountry;
+    }
+
+    public String getTeamTwoCountry() {
+        return teamTwoCountry;
+    }
+
+    public void setTeamTwoCountry(String teamTwoCountry) {
+        this.teamTwoCountry = teamTwoCountry;
+    }
+    public void printSelf()
+    {
+        Log.v(TAG,teamOne);
+        Log.v(TAG,teamTwo);
+        Log.v(TAG,teamOneCountry);
+        Log.v(TAG,teamTwoCountry);
+        Log.v(TAG,odd);
+        Log.v(TAG,prediction);
+        Log.v(TAG,matchType);
+        Log.v(TAG,timeOfGame);
+
     }
 }

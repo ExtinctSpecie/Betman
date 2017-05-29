@@ -1,6 +1,7 @@
 package com.extinctspecie.betman.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,8 @@ import com.google.android.gms.ads.reward.RewardItem;
 import com.google.android.gms.ads.reward.RewardedVideoAd;
 import com.google.android.gms.ads.reward.RewardedVideoAdListener;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 
@@ -48,7 +51,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
         this.layoutInflater = LayoutInflater.from(context);
         adView = layoutInflater.inflate(R.layout.lv_item_ad_display, null);
         btnShowad = (Button) adView.findViewById(R.id.btnShowAd);
-        loadAd();
+        //loadAd();
 
     }
 
@@ -71,89 +74,123 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
     @Override
     public View getView(int position, View view, ViewGroup viewGroup) {
 
+//
+//        if ((position == todayItems.size() - 1) && !Information.isAdShown()) {
+//
+//            //view = adView;
+//
+//            if (!rewardedVideoAd.isLoaded()) {
+//
+//                loadAd();
+//
+//            }
+//
+//
+//            Log.v(TAG, "ad view is set up");
+//
+//
+//            return adView;
+//
+//
+//        } else {
+        final ViewHolder viewHolder;
 
-        if ((position == todayItems.size() - 1) && !Information.isAdShown()) {
 
-            //view = adView;
+        if (view == null || Information.isAdShown()) {
+            TextView tvTemp;
+            viewHolder = new ViewHolder();
+            view = layoutInflater.inflate(R.layout.lv_adapter_tv_today, null);
 
-            if (!rewardedVideoAd.isLoaded()) {
+            viewHolder.tvTeamOne = (TextView) view.findViewById(R.id.tvTeamOne);
+            viewHolder.tvTeamOne.setTypeface(Fonts.getFavFont());
 
-                loadAd();
+            viewHolder.tvTeamTwo = (TextView) view.findViewById(R.id.tvTeamTwo);
+            viewHolder.tvTeamTwo.setTypeface(Fonts.getFavFont());
 
-            }
+            tvTemp = (TextView) view.findViewById(R.id.tvVSHelper);
+            tvTemp.setTypeface(Fonts.getFavFont());
+
+            viewHolder.tvPrediction = (TextView) view.findViewById((R.id.tvPrediction));
+            viewHolder.tvPrediction.setTypeface(Fonts.getFavFont());
+
+            viewHolder.tvOdd = (TextView) view.findViewById((R.id.tvOdd));
+            viewHolder.tvOdd.setTypeface(Fonts.getFavFont());
+
+            viewHolder.tvTime = (TextView) view.findViewById(R.id.tvTime);
+            viewHolder.tvTime.setTypeface(Fonts.getFavFont());
+
+            viewHolder.imgFirstBall = (ImageView) view.findViewById(R.id.lvImgFirstBallTodayTab);
+            viewHolder.imgSecondBall = (ImageView) view.findViewById(R.id.lvImgSecondBallTodayTab);
+
+            viewHolder.imgFirstFlag = (ImageView) view.findViewById(R.id.lvImgFirstFlagTodayTab);
+            viewHolder.imgSecondFlag = (ImageView) view.findViewById(R.id.lvImgSecondFlagTodayTab);
 
 
-            Log.v(TAG, "ad view is set up");
-
-
-            return adView;
-
-
+            view.setTag(viewHolder);
         } else {
-            final ViewHolder viewHolder;
+            viewHolder = (ViewHolder) view.getTag();
+        }
+
+        item = todayItems.get(position);
+
+        viewHolder.tvTeamOne.setText(item.getTeamOne());
+
+        viewHolder.tvTeamTwo.setText(item.getTeamTwo());
+
+        viewHolder.tvPrediction.setText(item.getPrediction());
+
+        viewHolder.tvOdd.setText(item.getOdd());
+
+        viewHolder.tvTime.setText(item.getTimeOfGame().substring(11, 16));
+
+        if (item.getMatchType().equals("Football")) {
+            viewHolder.imgFirstBall.setImageResource(R.mipmap.football_icon);
+            viewHolder.imgSecondBall.setImageResource(R.mipmap.football_icon);
+        } else {
+            viewHolder.imgFirstBall.setImageResource(R.mipmap.basketball_icon);
+            viewHolder.imgSecondBall.setImageResource(R.mipmap.basketball_icon);
+        }
 
 
-            if (view == null || Information.isAdShown()) {
-                TextView tvTemp;
-                viewHolder = new ViewHolder();
-                view = layoutInflater.inflate(R.layout.lv_adapter_tv_today, null);
+        item.printSelf();
+        if(item.getTeamOneCountry() != null)
+        {
+            viewHolder.imgFirstFlag.setImageDrawable(getFlag(item.getTeamOneCountry()));
 
-                viewHolder.tvTeamOne = (TextView) view.findViewById(R.id.tvTeamOne);
-                viewHolder.tvTeamOne.setTypeface(Fonts.getFavFont());
-
-                viewHolder.tvTeamTwo = (TextView) view.findViewById(R.id.tvTeamTwo);
-                viewHolder.tvTeamTwo.setTypeface(Fonts.getFavFont());
-
-                tvTemp = (TextView) view.findViewById(R.id.tvVSHelper);
-                tvTemp.setTypeface(Fonts.getFavFont());
-
-                viewHolder.tvPrediction = (TextView) view.findViewById((R.id.tvPrediction));
-                viewHolder.tvPrediction.setTypeface(Fonts.getFavFont());
-
-                viewHolder.tvOdd = (TextView) view.findViewById((R.id.tvOdd));
-                viewHolder.tvOdd.setTypeface(Fonts.getFavFont());
-
-                viewHolder.tvTime = (TextView) view.findViewById(R.id.tvTime);
-                viewHolder.tvTime.setTypeface(Fonts.getFavFont());
-
-                viewHolder.imgFirstBall = (ImageView) view.findViewById(R.id.lvImgFirstBallTodayTab);
-                viewHolder.imgSecondBall = (ImageView) view.findViewById(R.id.lvImgSecondBallTodayTab);
-
-                view.setTag(viewHolder);
-            } else {
-                viewHolder = (ViewHolder) view.getTag();
-            }
-
-            item = todayItems.get(position);
-
-            viewHolder.tvTeamOne.setText(item.getTeamOne());
-
-            viewHolder.tvTeamTwo.setText(item.getTeamTwo());
-
-            viewHolder.tvPrediction.setText(item.getPrediction());
-
-            viewHolder.tvOdd.setText(item.getOdd());
-
-            viewHolder.tvTime.setText(item.getTimeOfGame().substring(11, 16));
-
-            if(item.getMatchType().equals("Football"))
+            if(item.getTeamTwoCountry() == null || item.getTeamTwoCountry().equals(""))
             {
-                viewHolder.imgFirstBall.setImageResource(R.mipmap.football_icon);
-                viewHolder.imgSecondBall.setImageResource(R.mipmap.football_icon);
+                viewHolder.imgSecondFlag.setBackground(getFlag(item.getTeamOneCountry()));
             }
             else
             {
-                viewHolder.imgFirstBall.setImageResource(R.mipmap.basketball_icon);
-                viewHolder.imgSecondBall.setImageResource(R.mipmap.basketball_icon);
+                viewHolder.imgSecondFlag.setBackground(getFlag(item.getTeamTwoCountry()));
             }
-
-            if (position % 2 == 1)
-                view.setAlpha(0.8f);
-
-            return view;
         }
 
+
+
+        if (position % 2 == 1)
+            view.setAlpha(0.8f);
+
+        return view;
+
     }
+
+    private Drawable getFlag(String isoName) {
+
+        try {
+            String fileName = "flags_iso/"+isoName.toLowerCase() + ".png";
+            InputStream ims = null;
+            ims = context.getAssets().open(fileName);
+            Drawable d = Drawable.createFromStream(ims, null);
+            ims.close();
+            return d;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
 
     public void noItemsAvailable() {
 
@@ -247,5 +284,7 @@ public class LVAdapterTVToday extends BaseAdapter implements RewardedVideoAdList
         TextView tvOdd;
         ImageView imgFirstBall;
         ImageView imgSecondBall;
+        ImageView imgFirstFlag;
+        ImageView imgSecondFlag;
     }
 }

@@ -2,6 +2,7 @@ package com.extinctspecie.betman.adapters;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +15,8 @@ import com.extinctspecie.betman.R;
 import com.extinctspecie.betman.helpers.Fonts;
 import com.extinctspecie.betman.models.HistoryItem;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.List;
 
 /**
@@ -86,6 +89,9 @@ public class LVAdapterTVHistory extends BaseAdapter {
             viewHolder.imgFirstBall = (ImageView) view.findViewById(R.id.lvImgFirstBallHistoryTab);
             viewHolder.imgSecondBall = (ImageView) view.findViewById(R.id.lvImgSecondBallHistoryTab);
 
+            viewHolder.imgFlag = (ImageView) view.findViewById(R.id.lvImgFlagHistoryTab);
+
+
             view.setTag(viewHolder);
         } else {
             viewHolder = (ViewHolder) view.getTag();
@@ -123,10 +129,36 @@ public class LVAdapterTVHistory extends BaseAdapter {
             viewHolder.llHistoryItem.setBackgroundColor((context.getResources().getColor(R.color.predictionFailed)));
         }
 
+        if(item.getTeamOneCountry() != null)
+        {
+            viewHolder.imgFlag.setImageDrawable(getFlag(item.getTeamOneCountry()));
+
+//            if(item.getTeamTwoCountry() == null || item.getTeamTwoCountry().equals(""))
+//            {
+//                viewHolder.imgFlag.setBackground(getFlag(item.getTeamOneCountry()));
+//            }
+//            else
+//            {
+//                viewHolder.imgFlag.setBackground(getFlag(item.getTeamTwoCountry()));
+//            }
+        }
 
         return view;
     }
+    private Drawable getFlag(String isoName) {
 
+        try {
+            String fileName = "flags_iso/"+isoName.toLowerCase() + ".png";
+            InputStream ims = null;
+            ims = context.getAssets().open(fileName);
+            Drawable d = Drawable.createFromStream(ims, null);
+            ims.close();
+            return d;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
     static class ViewHolder {
         TextView tvTeamOne;
         TextView tvTeamTwo;
@@ -137,6 +169,7 @@ public class LVAdapterTVHistory extends BaseAdapter {
         TextView tvFinalScore;
         ImageView imgFirstBall;
         ImageView imgSecondBall;
+        ImageView imgFlag;
         LinearLayout llHistoryItem;
     }
 
