@@ -216,7 +216,7 @@ interface IInAppBillingService {
      *                          not begin billing the user for the new subscription until after
      *                          the credit is used up.
      *                          If you set this field to false, the user does not receive credit for
-     *                          any unused subscription timeOfGame and the recurrence date does not
+     *                          any unused subscription timeOfGame and the recurrence created_at does not
      *                          change.
      *                          Default value is true. Ignored if you do not pass skusToReplace.
      *            "accountId" - String - an optional obfuscated string that is uniquely

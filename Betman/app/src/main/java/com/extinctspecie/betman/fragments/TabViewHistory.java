@@ -74,21 +74,28 @@ public class TabViewHistory extends Fragment {
         IHistoryService.Factory.getInstance().getHistoryItems().enqueue(new Callback<List<HistoryItem>>() {
             @Override
             public void onResponse(Call<List<HistoryItem>> call, Response<List<HistoryItem>> response) {
-                historyItems = response.body();
 
+                try {
 
-                if (historyItems.size() > 0) {
+                    historyItems = response.body();
 
-                    if (lvAdapterHistory == null) {
-                        lvAdapterHistory = new LVAdapterTVHistory(getActivity().getBaseContext(), historyItems);
-                        listView.setAdapter(lvAdapterHistory);
-                    } else
-                        lvAdapterHistory.updateData(historyItems);
+                    if (historyItems.size() > 0) {
 
+                        if (lvAdapterHistory == null) {
+                            lvAdapterHistory = new LVAdapterTVHistory(getActivity().getBaseContext(), historyItems);
+                            listView.setAdapter(lvAdapterHistory);
+                        } else
+                            lvAdapterHistory.updateData(historyItems);
+
+                    }
+                    //dismiss loading circle
+                    tvHistoryProgress.setVisibility(View.GONE);
+                }catch (NullPointerException e)
+                {
+                    e.printStackTrace();
+                    tvHistoryProgress.setVisibility(View.GONE);
                 }
 
-                //dismiss loading circle
-                tvHistoryProgress.setVisibility(View.GONE);
             }
 
             @Override

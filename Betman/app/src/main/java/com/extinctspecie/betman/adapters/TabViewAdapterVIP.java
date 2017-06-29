@@ -31,8 +31,8 @@ public class TabViewAdapterVIP extends FragmentStatePagerAdapter
         switch (position) {
             case 0:
                 return tabViewVIPTips;
-            case 1:
-                return tabViewVIPLive;
+//            case 1:
+//                return tabViewVIPLive;
             default:
                 return null;
         }
@@ -48,8 +48,8 @@ public class TabViewAdapterVIP extends FragmentStatePagerAdapter
         switch (position) {
             case 0:
                 return "Tips";
-            case 1:
-                return "Live";
+//            case 1:
+//                return "Live";
             default:
                 return null;
         }

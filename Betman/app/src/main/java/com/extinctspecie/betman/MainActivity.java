@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
 
                 viewPager = (ViewPager) findViewById(R.id.container);
                 viewPager.setAdapter(tabViewAdapter);
-                viewPager.setOffscreenPageLimit(3);
+                viewPager.setOffscreenPageLimit(4);
                 viewPagerTab = (SmartTabLayout) findViewById(R.id.tabsLayout);
                 viewPagerTab.setViewPager(viewPager);
 

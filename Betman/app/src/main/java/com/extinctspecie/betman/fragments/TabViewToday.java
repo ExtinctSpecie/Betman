@@ -74,17 +74,27 @@ public class TabViewToday extends Fragment {
         ITodayService.Factory.getInstance().getTodayItems().enqueue(new Callback<List<TodayItem>>() {
             @Override
             public void onResponse(Call<List<TodayItem>> call, Response<List<TodayItem>> response) {
-                todayItems = response.body();
 
-                if (todayItems.size() > 0) {
+                try {
 
-                    lvAdapterTVToday = new LVAdapterTVToday(getActivity().getBaseContext(), todayItems);
-                    //set adapter
-                    listView.setAdapter(lvAdapterTVToday);
-                } else {
-                    listView.setAdapter(new LVAdapterNoItems(getActivity().getBaseContext()));
+                    todayItems = response.body();
+
+                    if (todayItems.size() > 0) {
+
+                        lvAdapterTVToday = new LVAdapterTVToday(getActivity().getBaseContext(), todayItems);
+
+                        //set adapter
+                        listView.setAdapter(lvAdapterTVToday);
+                    } else {
+                        listView.setAdapter(new LVAdapterNoItems(getActivity().getBaseContext()));
+                    }
+                    tvTodayProgress.setVisibility(View.GONE);
+                }catch (NullPointerException e)
+                {
+                    e.printStackTrace();
+                    tvTodayProgress.setVisibility(View.GONE);
                 }
-                tvTodayProgress.setVisibility(View.GONE);
+
             }
 
             @Override

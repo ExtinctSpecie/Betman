@@ -39,7 +39,9 @@ public class TabViewVIP extends Fragment {
     private IabHelper iabHelper;
     private String base64EncodedPublicKey;
     private final String SUB_SKU = "subscription_5_euro";
+    private final String SKU_VIP = "vip_purchase";
     static final int RC_VIP_SUB = 10001;
+    static final int RC_SKU_VIP = 1001;
 
     @Nullable
     @Override
@@ -59,7 +61,7 @@ public class TabViewVIP extends Fragment {
         // Create and set a new adapter for sub-tabs
         TabViewAdapterVIP tabViewAdapterVIP = new TabViewAdapterVIP(getActivity().getSupportFragmentManager(), getActivity().getApplicationContext());
         viewPager.setAdapter(tabViewAdapterVIP);
-        viewPager.setOffscreenPageLimit(2);
+        viewPager.setOffscreenPageLimit(1);
         viewPagerTab.setViewPager(viewPager);
 
         base64EncodedPublicKey = getResources().getString(R.string.googlePlayPublicKey);
@@ -89,7 +91,7 @@ public class TabViewVIP extends Fragment {
                 try {
 
                     if (iabHelper != null) iabHelper.flagEndAsync();
-                    iabHelper.launchPurchaseFlow(getActivity(), SUB_SKU, IabHelper.ITEM_TYPE_SUBS, null, RC_VIP_SUB, onIabPurchaseFinishedListener, "unique_payload");
+                    iabHelper.launchPurchaseFlow(getActivity(), SKU_VIP, IabHelper.ITEM_TYPE_INAPP, null, RC_VIP_SUB, onIabPurchaseFinishedListener, "unique_payload");
 
                 } catch (IabHelper.IabAsyncInProgressException e) {
                     e.printStackTrace();

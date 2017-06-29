@@ -79,21 +79,30 @@ public class TabViewVIPTips extends Fragment {
         IVIPTipsService.Factory.getInstance().getVIPTipsItems().enqueue(new Callback<List<VIPTipsItem>>() {
             @Override
             public void onResponse(Call<List<VIPTipsItem>> call, Response<List<VIPTipsItem>> response) {
-                vipTipsItems = response.body();
 
-                if (vipTipsItems.size() > 0) {
-                    if (lvAdapterTVVIPTips == null) {
+                try {
+                    vipTipsItems = response.body();
 
-                        lvAdapterTVVIPTips = new LVAdapterTVVIPTips(view.getContext(), vipTipsItems);
-                        //set adapter
-                        listView.setAdapter(lvAdapterTVVIPTips);
-                    } else
-                        lvAdapterTVVIPTips.updateData(vipTipsItems);
-                } else {
-                    listView.setAdapter(new LVAdapterNoItems(getActivity().getBaseContext()));
+                    if (vipTipsItems.size() > 0) {
+                        if (lvAdapterTVVIPTips == null) {
+
+                            lvAdapterTVVIPTips = new LVAdapterTVVIPTips(view.getContext(), vipTipsItems);
+                            //set adapter
+                            listView.setAdapter(lvAdapterTVVIPTips);
+                        } else
+                            lvAdapterTVVIPTips.updateData(vipTipsItems);
+                    } else {
+                        listView.setAdapter(new LVAdapterNoItems(getActivity().getBaseContext()));
+                    }
+                    //dismiss loading circle
+                    tvTodayProgress.setVisibility(View.GONE);
                 }
-                //dismiss loading circle
-                tvTodayProgress.setVisibility(View.GONE);
+                catch (NullPointerException e)
+                {
+                    e.printStackTrace();
+                    tvTodayProgress.setVisibility(View.GONE);
+                }
+
             }
 
             @Override
