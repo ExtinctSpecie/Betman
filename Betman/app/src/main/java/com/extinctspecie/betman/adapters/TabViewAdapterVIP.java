@@ -1,6 +1,7 @@
 package com.extinctspecie.betman.adapters;
 
 import android.content.Context;
+import android.os.Parcelable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -14,7 +15,7 @@ import com.extinctspecie.betman.fragments.TabViewVIPTips;
 
 public class TabViewAdapterVIP extends FragmentStatePagerAdapter
 {
-    private final int maxTabViews = 2;
+    private final int maxTabViews = 1;
     private final TabViewVIPTips tabViewVIPTips = new TabViewVIPTips();
     private final TabViewVIPLive tabViewVIPLive = new TabViewVIPLive();
     private Context context;
