@@ -91,7 +91,7 @@ public class TabViewVIP extends Fragment {
                 try {
 
                     if (iabHelper != null) iabHelper.flagEndAsync();
-                    iabHelper.launchPurchaseFlow(getActivity(), SKU_VIP, IabHelper.ITEM_TYPE_INAPP, null, RC_VIP_SUB, onIabPurchaseFinishedListener, "unique_payload");
+                    iabHelper.launchPurchaseFlow(getActivity(), SKU_VIP, IabHelper.ITEM_TYPE_INAPP, null, RC_SKU_VIP, onIabPurchaseFinishedListener, "unique_payload");
 
                 } catch (IabHelper.IabAsyncInProgressException e) {
                     e.printStackTrace();
@@ -162,11 +162,11 @@ public class TabViewVIP extends Fragment {
         public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
 
 
-            if (inventory.hasPurchase(SUB_SKU)) {
+            if (inventory.hasPurchase(SKU_VIP) || inventory.hasPurchase(SUB_SKU)) {
 
-                Log.v(TAG,"token" + inventory.getPurchase(SUB_SKU).getToken());
-                Log.v(TAG,"package" + inventory.getPurchase(SUB_SKU).getPackageName());
-                Log.v(TAG,"order id" + inventory.getPurchase(SUB_SKU).getOrderId());
+                Log.v(TAG,"token" + inventory.getPurchase(SKU_VIP).getToken());
+                Log.v(TAG,"package" + inventory.getPurchase(SKU_VIP).getPackageName());
+                Log.v(TAG,"order id" + inventory.getPurchase(SKU_VIP).getOrderId());
 
                 tabVipView.findViewById(R.id.noSubLayout).setVisibility(View.GONE);
 
