@@ -56,6 +56,7 @@ public class TabViewToday extends Fragment {
     }
 
     private void registerRefreshListener() {
+
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
